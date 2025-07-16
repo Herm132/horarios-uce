@@ -1,0 +1,58 @@
+.facultad-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 1rem;
+  font-family: sans-serif;
+}
+
+.facultad-form {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.facultad-form input {
+  flex: 1;
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+
+.facultad-form button {
+  padding: 0.5rem 1rem;
+  background-color: #007bff;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.facultad-list {
+  list-style: none;
+  padding: 0;
+}
+
+.facultad-list li {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.8rem;
+  padding: 0.5rem;
+  background-color: rgb(158, 158, 158);
+  border-radius: 4px;
+}
+
+.facultad-list button {
+  margin-left: 0.5rem;
+  padding: 0.3rem 0.6rem;
+  border: none;
+  cursor: pointer;
+  background-color: #888;
+  color: white;
+}
+
+.facultad-list button:hover {
+  background-color: #555;
+}
+
+.error {
+  color: red;
+  margin-bottom: 1rem;
+}

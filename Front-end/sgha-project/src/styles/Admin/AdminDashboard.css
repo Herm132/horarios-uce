@@ -1,0 +1,94 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.dashboard-container {
+  background-color: #ffffff;
+  height: 100%; /* ✅ */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 20px;
+  overflow: hidden;
+}
+
+.dashboard-title {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 30px;
+  color: #1e2a38;
+}
+
+.dashboard-carousel {
+  width: 100%;
+  max-width: 1000px;
+  margin-bottom: 40px;
+}
+
+.carousel-item img {
+  max-height: 400px;
+  object-fit: cover;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+}
+
+.carousel-item img:hover {
+  transform: scale(1.01);
+}
+
+.dashboard-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+/* Botón personalizado */
+.custom-button {
+  width: 250px;
+  height: 60px;
+  padding: 0 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Inter", sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  background-color: #007c29;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  transition: all 0.2s ease-in-out;
+}
+
+.custom-button:hover {
+  background-color: #006d24;
+}
+
+.custom-button:active {
+  background-color: #005a1b;
+}
+
+.custom-button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Responsive */
+@media (max-width: 576px) {
+  .custom-button {
+    width: 100%;
+  }
+
+  .dashboard-title {
+    font-size: 1.6rem;
+  }
+
+  .carousel-item img {
+    max-height: 300px;
+  }
+}

@@ -1,0 +1,149 @@
+.usuario-asignatura-estudiante-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: #fdfdfd;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  font-family: sans-serif;
+}
+
+h2 {
+  margin-bottom: 1.5rem;
+  text-align: center;
+  color: #333;
+}
+
+.buscador-autocomplete {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.buscador-autocomplete input {
+  width: 100%;
+  padding: 0.6rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.sugerencias {
+  position: absolute;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin-top: 4px;
+  width: 100%;
+  z-index: 10;
+  max-height: 180px;
+  overflow-y: auto;
+}
+
+.sugerencias li {
+  padding: 0.6rem;
+  cursor: pointer;
+}
+
+.sugerencias li:hover {
+  background-color: #f1f1f1;
+}
+
+.formulario {
+  display: flex;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.formulario select,
+.formulario input {
+  padding: 0.5rem;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  flex: 1;
+  min-width: 180px;
+}
+
+.formulario button {
+  padding: 0.5rem 1rem;
+  background-color: #007bff;
+  border: none;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.formulario button:disabled {
+  background-color: #a8a8a8;
+  cursor: not-allowed;
+}
+
+.resultado-usuario {
+  margin-top: 2rem;
+  background-color: #fafafa;
+  padding: 1.5rem;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+}
+
+.resultado-usuario h3 {
+  margin-bottom: 0.5rem;
+  color: #444;
+}
+
+.resultado-usuario p {
+  margin-bottom: 1rem;
+  color: #555;
+}
+
+/* ✅ Carreras como etiquetas */
+.carreras-estudiante ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.3rem;
+  margin-bottom: 1rem;
+  padding-left: 0;
+}
+
+.carreras-estudiante li {
+  list-style: none;
+  background-color: #eef6ff;
+  color: #0c63e4;
+  padding: 0.3rem 0.7rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  border: 1px solid #cbe0ff;
+}
+
+/* ✅ Asignaturas listadas */
+.resultado-usuario ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.resultado-usuario li {
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  padding: 0.7rem 1rem;
+  margin-bottom: 0.6rem;
+  border-radius: 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.resultado-usuario li button {
+  background-color: transparent;
+  border: none;
+  font-size: 1.1rem;
+  cursor: pointer;
+  color: #dc3545;
+}
+
+.resultado-usuario li button:hover {
+  color: #a50000;
+}

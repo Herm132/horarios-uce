@@ -1,0 +1,56 @@
+.horario-tabla-container {
+  padding: 2rem;
+  background-color: #f9f9f9;
+  font-family: "Inter", sans-serif;
+}
+
+.horario-tabla-container h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #1d252c;
+}
+
+.tabla-horario {
+  width: 100%;
+  border-collapse: collapse;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
+}
+
+.tabla-horario th,
+.tabla-horario td {
+  border: 1px solid #ddd;
+  padding: 0.75rem;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 0.95rem;
+}
+
+.tabla-horario th {
+  background-color: #f4b223;
+  color: #1d252c;
+}
+
+.columna-hora {
+  background-color: #f0f0f0;
+  font-weight: bold;
+  color: #333;
+}
+
+.celda-horario {
+  background-color: #ffffff;
+  border-radius: 4px;
+  padding: 0.4rem;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.03);
+  line-height: 1.3;
+}
+
+.celda-horario strong {
+  display: block;
+  font-weight: 600;
+  color: #333;
+}
+
+.celda-horario span {
+  font-size: 0.85rem;
+  color: #666;
+}

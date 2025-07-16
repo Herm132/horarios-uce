@@ -1,0 +1,221 @@
+/* Sidebar principal */
+.sidebar-menu {
+  position: fixed;
+  top: 100px;
+  left: 0;
+  width: 235px;
+  height: calc(100vh - 96px);
+  background-color: #2a91d2ff;
+  display: flex;
+  flex-direction: column;
+  font-family: "Inter", sans-serif;
+  padding: 20px 15px;
+  overflow-y: auto;
+  box-shadow: 0px 0px 1px #171a1f12, 0px 0px 2px #171a1f1f;
+  z-index: 1001;
+  transition: transform 0.3s ease;
+}
+
+/* Botones accordion (secciones) */
+.accordion-button {
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffffff;
+  background-color: transparent;
+  padding: 12px 16px;
+  border: none;
+  box-shadow: none;
+  transition: background-color 0.2s ease;
+}
+
+.accordion-button::after {
+  filter: brightness(0) invert(1); /* flecha blanca */
+}
+
+.accordion-button:not(.collapsed) {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.accordion-item {
+  border: none;
+  margin-bottom: 10px;
+}
+
+/* Espaciado entre cuerpo de secciones */
+.accordion-body {
+  padding: 0;
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Enlaces del menú */
+.sidebar-menu-item {
+  padding: 10px 14px;
+  border-radius: 6px;
+  background-color: transparent;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.sidebar-menu-item:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: translateX(4px);
+}
+
+.sidebar-menu-item.selected {
+  background-color: #ffffff;
+  color: #2a91d2;
+  font-weight: 700;
+}
+
+.sidebar-menu-item.indent {
+  padding-left: 30px;
+}
+
+/* Botón hamburguesa para móvil */
+.mobile-menu-toggle {
+  position: fixed;
+  top: 115px;
+  left: 15px;
+  z-index: 1002;
+  background: #2a91d2;
+  border: none;
+  padding: 8px;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  display: none;
+  flex-direction: column;
+  gap: 3px;
+  cursor: pointer;
+}
+
+.mobile-menu-toggle span {
+  width: 20px;
+  height: 2px;
+  background: white;
+  transition: 0.3s;
+  border-radius: 1px;
+}
+
+/* Animación del botón hamburguesa */
+.mobile-menu-toggle.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.mobile-menu-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.mobile-menu-toggle.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(7px, -6px);
+}
+
+/* Botón cerrar dentro del sidebar */
+.mobile-menu-close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  display: none;
+  width: 30px;
+  height: 30px;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Overlay para cerrar menú en móvil */
+.mobile-menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  display: none;
+}
+
+/* Responsive - Tablet */
+@media (max-width: 768px) {
+  .mobile-menu-toggle {
+    display: flex;
+  }
+
+  .mobile-menu-overlay.active {
+    display: block;
+  }
+
+  .mobile-menu-close {
+    display: flex;
+  }
+
+  .sidebar-menu {
+    top: 0;
+    width: 280px;
+    height: 100vh;
+    transform: translateX(-100%);
+    z-index: 1001;
+    padding-top: 60px;
+  }
+
+  .sidebar-menu.mobile-open {
+    transform: translateX(0);
+  }
+
+  .sidebar-menu.mobile-closed {
+    transform: translateX(-100%);
+  }
+
+  .accordion-button {
+    font-size: 15px;
+    padding: 10px;
+  }
+
+  .accordion-body {
+    gap: 8px;
+  }
+
+  .sidebar-menu-item {
+    font-size: 14px;
+    padding: 12px 14px;
+  }
+}
+
+/* Responsive - Móvil pequeño */
+@media (max-width: 480px) {
+  .sidebar-menu {
+    width: 100%;
+  }
+
+  .mobile-menu-toggle {
+    top: 110px;
+  }
+
+  .sidebar-menu-item {
+    font-size: 14px;
+    padding: 10px 12px;
+  }
+}
+
+/* Ajustes para el topbar cuando hay menú móvil */
+@media (max-width: 768px) {
+  .topbar {
+    position: relative;
+    height: auto;
+    padding: 15px 20px;
+  }
+
+  .topbar-title {
+    font-size: 20px;
+    margin: 10px 0;
+  }
+}

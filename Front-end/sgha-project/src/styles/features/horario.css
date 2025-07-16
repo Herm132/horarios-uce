@@ -1,0 +1,86 @@
+.horario-container {
+  padding: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
+}
+
+.horario-container h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+  color: #333;
+}
+
+.formulario-horario {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  justify-content: center;
+}
+
+.formulario-horario select,
+.formulario-horario input {
+  padding: 0.6rem 0.8rem;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  min-width: 220px;
+}
+
+.formulario-horario button {
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 6px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.formulario-horario button.cancelar {
+  background-color: #dc3545;
+}
+
+.formulario-horario button:hover {
+  background-color: #0056b3;
+}
+
+.formulario-horario button.cancelar:hover {
+  background-color: #a71d2a;
+}
+
+.lista-horarios {
+  list-style: none;
+  padding: 0;
+  margin-top: 1.5rem;
+}
+
+.lista-horarios li {
+  background-color: #f9f9f9;
+  border-left: 4px solid #007bff;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 6px;
+  position: relative;
+}
+
+.lista-horarios strong {
+  color: #333;
+}
+
+.lista-horarios button {
+  margin-left: 10px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1.1rem;
+}
+
+.lista-horarios button:hover {
+  color: #dc3545;
+}

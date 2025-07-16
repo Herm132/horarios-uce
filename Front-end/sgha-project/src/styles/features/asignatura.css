@@ -1,0 +1,106 @@
+.asignatura-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.asignatura-container h2 {
+  margin-bottom: 1.5rem;
+  color: #007acc;
+  text-align: center;
+}
+
+.asignatura-form {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr 1fr;
+  margin-bottom: 2rem;
+}
+
+.asignatura-form label {
+  display: flex;
+  flex-direction: column;
+  font-weight: 500;
+  color: #333333;
+}
+
+.asignatura-form input[type="text"],
+.asignatura-form input[type="number"] {
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+}
+
+.asignatura-form input[type="checkbox"] {
+  margin-right: 0.5rem;
+}
+
+.asignatura-form .full-width {
+  grid-column: 1 / -1;
+}
+
+.asignatura-form button {
+  grid-column: 1 / -1;
+  padding: 0.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+  background-color: #007acc;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.asignatura-form button:hover {
+  background-color: #005fa3;
+}
+
+.asignatura-list {
+  list-style: none;
+  padding: 0;
+}
+
+.asignatura-list li {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border-radius: 6px;
+  background-color: #f4f4f4;
+  border: 1px solid #dddddd;
+}
+
+.asignatura-list strong {
+  font-size: 1.1rem;
+  color: #333333;
+}
+
+.btn-group {
+  margin-top: 0.5rem;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.btn-group button {
+  padding: 0.4rem 0.75rem;
+  border: none;
+  border-radius: 4px;
+  font-weight: 500;
+  cursor: pointer;
+  background-color: #007acc;
+  color: white;
+  transition: background-color 0.3s;
+}
+
+.btn-group button:hover {
+  background-color: #005fa3;
+}
+
+.error {
+  color: red;
+  font-weight: bold;
+  grid-column: 1 / -1;
+}

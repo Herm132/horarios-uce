@@ -1,0 +1,162 @@
+.usuario-asignatura-container {
+  padding: 2rem;
+  font-family: "Segoe UI", sans-serif;
+  background-color: #f9fafb;
+  color: #1f2937;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.usuario-asignatura-container h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  color: #111827;
+  border-bottom: 2px solid #e5e7eb;
+  padding-bottom: 0.5rem;
+  text-align: center;
+}
+
+/* 🧾 Formulario */
+.form-usuario-asignatura {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  background: white;
+  padding: 1rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  justify-content: center;
+  align-items: center;
+}
+
+.form-usuario-asignatura select,
+.form-usuario-asignatura input[type="number"] {
+  padding: 0.6rem;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  min-width: 220px;
+  background-color: #f9fafb;
+  font-size: 0.95rem;
+}
+
+.form-usuario-asignatura button {
+  padding: 0.6rem 1.2rem;
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.form-usuario-asignatura button:hover {
+  background-color: #1d4ed8;
+}
+
+/* 🔍 Autocompletado */
+.buscador-autocomplete {
+  position: relative;
+  max-width: 300px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.buscador-autocomplete input {
+  width: 100%;
+  padding: 0.6rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background-color: #ffffff;
+}
+
+.sugerencias {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: white;
+  border: 1px solid #d1d5db;
+  border-top: none;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 10;
+  border-radius: 0 0 6px 6px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.sugerencias li {
+  padding: 0.6rem;
+  cursor: pointer;
+}
+
+.sugerencias li:hover {
+  background-color: #f3f4f6;
+}
+
+/* 📋 Resultado de búsqueda */
+.resultado-usuario {
+  margin-top: 2rem;
+  background-color: #e0f2fe;
+  padding: 1rem;
+  border-left: 5px solid #0284c7;
+  border-radius: 8px;
+}
+
+.resultado-usuario h3 {
+  margin-bottom: 0.5rem;
+  color: #0f172a;
+}
+
+.resultado-usuario p {
+  margin-bottom: 0.5rem;
+}
+
+.resultado-usuario ul {
+  list-style: none;
+  padding-left: 1rem;
+}
+
+.resultado-usuario li {
+  margin-bottom: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.resultado-usuario li button {
+  background-color: transparent;
+  color: #dc2626;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-left: 1rem;
+  transition: color 0.2s ease;
+}
+
+.resultado-usuario li button:hover {
+  color: #b91c1c;
+}
+
+.tabla-usuario-asignatura {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1.5rem;
+  background-color: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.tabla-usuario-asignatura th,
+.tabla-usuario-asignatura td {
+  padding: 0.8rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.tabla-usuario-asignatura th {
+  background-color: #f3f4f6;
+  text-align: left;
+}

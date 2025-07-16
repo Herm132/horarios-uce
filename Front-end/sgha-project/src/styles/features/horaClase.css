@@ -1,0 +1,113 @@
+.hora-clase-container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  font-family: "Segoe UI", sans-serif;
+}
+
+.hora-clase-container h2 {
+  text-align: center;
+  color: #007acc;
+  margin-bottom: 1.5rem;
+}
+
+.filtros {
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.filtros input {
+  padding: 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  width: 50%;
+}
+
+.form-hora {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.form-hora select,
+.form-hora input {
+  padding: 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.form-hora button {
+  padding: 0.6rem 1.2rem;
+  background-color: #007acc;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.form-hora button:hover {
+  background-color: #005fa3;
+}
+
+.horario-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.horario-dia {
+  background: #f9f9f9;
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+}
+
+.horario-dia h3 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.horario-card {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 0.5rem;
+  margin-bottom: 0.6rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.horario-card span {
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.acciones button {
+  margin-left: 0.3rem;
+  background-color: #007acc;
+  color: white;
+  border: none;
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.acciones button:hover {
+  background-color: #005fa3;
+}
+
+.sin-horario {
+  color: #777;
+  font-style: italic;
+  text-align: center;
+}

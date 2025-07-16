@@ -1,0 +1,144 @@
+.usuario-carrera-container {
+  padding: 2rem;
+  font-family: "Segoe UI", sans-serif;
+  background-color: #f9fafb;
+  color: #1f2937;
+}
+
+h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  color: #111827;
+  border-bottom: 2px solid #e5e7eb;
+  padding-bottom: 0.5rem;
+}
+
+.form-usuario-carrera {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  background: white;
+  padding: 1rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.form-usuario-carrera select {
+  padding: 0.6rem;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  background-color: #f9fafb;
+}
+
+.form-usuario-carrera button {
+  padding: 0.6rem 1.2rem;
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.form-usuario-carrera button:hover {
+  background-color: #1d4ed8;
+}
+
+.busquedas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.busquedas select,
+.busquedas input {
+  padding: 0.6rem;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  min-width: 240px;
+  background: white;
+}
+
+.buscador-autocomplete {
+  position: relative;
+}
+
+.sugerencias {
+  position: absolute;
+  top: 100%;
+  width: 100%;
+  max-height: 200px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #d1d5db;
+  border-radius: 0 0 6px 6px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  z-index: 5;
+}
+
+.sugerencias li {
+  padding: 0.6rem;
+  cursor: pointer;
+}
+
+.sugerencias li:hover {
+  background-color: #f3f4f6;
+}
+
+.tabla-usuarios-carreras {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  background-color: white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.tabla-usuarios-carreras th,
+.tabla-usuarios-carreras td {
+  padding: 1rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.tabla-usuarios-carreras th {
+  background-color: #f3f4f6;
+  text-align: left;
+}
+
+.tabla-usuarios-carreras td ul {
+  padding-left: 1rem;
+}
+
+.tabla-usuarios-carreras button {
+  background: transparent;
+  border: none;
+  color: #dc2626;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.resultado-usuario {
+  background: #e0f2fe;
+  padding: 1rem;
+  border-left: 5px solid #0284c7;
+  border-radius: 8px;
+  margin-top: 1rem;
+}
+
+.resultado-usuario ul {
+  margin-top: 0.5rem;
+  padding-left: 1rem;
+}
+
+.modal {
+  margin-top: 2rem;
+  padding: 1rem;
+  background: #fef3c7;
+  border-left: 5px solid #f59e0b;
+  border-radius: 6px;
+}

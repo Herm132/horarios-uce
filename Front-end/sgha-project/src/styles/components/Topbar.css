@@ -1,0 +1,135 @@
+.topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100px;
+  background-color: #2a91d2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 30px;
+  z-index: 1000;
+  font-family: "Inter", sans-serif;
+}
+
+.topbar-left,
+.topbar-center,
+.topbar-right {
+  display: flex;
+  align-items: center;
+}
+
+.logo-img {
+  height: 70px;
+}
+
+.topbar-center {
+  flex: 1;
+  justify-content: center;
+  text-align: center;
+  font-family: "Archivo", sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.3;
+}
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.topbar-user {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.avatar {
+  background-color: #ec936d;
+  color: white;
+  width: 48px;
+  height: 48px;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+}
+
+.user-info .rol {
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.user-info .correo {
+  color: #fff;
+  font-size: 13px;
+}
+
+.logout-button {
+  background-color: #ffffff;
+  color: #2a91d2;
+  border: 2px solid #ffffff;
+  padding: 6px 12px;
+  font-size: 14px;
+  border-radius: 6px;
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.logout-button:hover {
+  background-color: #f9f9f9;
+  color: #d32f2f;
+  border-color: #d32f2f;
+}
+
+/* 🔻 VISTA MÓVIL 🔻 */
+@media (max-width: 768px) {
+  .topbar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 12px 20px;
+    height: auto;
+    gap: 12px;
+  }
+
+  .topbar-center {
+    font-size: 18px;
+    text-align: left;
+    line-height: 1.2;
+  }
+
+  .topbar-right {
+    width: 100%;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  .topbar-user {
+    gap: 8px;
+  }
+
+  .avatar {
+    width: 40px;
+    height: 40px;
+    font-size: 14px;
+  }
+
+  .logout-button {
+    font-size: 13px;
+    padding: 6px 10px;
+    white-space: nowrap;
+  }
+}
