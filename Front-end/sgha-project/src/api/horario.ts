@@ -18,7 +18,7 @@ export interface HorarioPayload {
   id_hora_clase: number;
   id_usuario: number;
   paralelo: number;
-  semestre_lectivo: string;
+  id_semestre_lectivo: number;
 }
 
 // 🔹 Obtener todos los horarios

@@ -12,17 +12,19 @@ class Asignatura(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'asignatura'
+        db_table = "asignatura"
 
 
 class AsignaturaCarrera(models.Model):
     id = models.AutoField(primary_key=True)
-    id_asignatura = models.ForeignKey('Asignatura', models.DO_NOTHING, db_column='id_asignatura')
-    id_carrera = models.ForeignKey('Carrera', models.DO_NOTHING, db_column='id_carrera')
+    id_asignatura = models.ForeignKey(
+        "Asignatura", models.DO_NOTHING, db_column="id_asignatura"
+    )
+    id_carrera = models.ForeignKey("Carrera", models.DO_NOTHING, db_column="id_carrera")
 
     class Meta:
         managed = False
-        db_table = 'asignatura_carrera'
+        db_table = "asignatura_carrera"
 
 
 class Aula(models.Model):
@@ -32,33 +34,39 @@ class Aula(models.Model):
     tipo = models.CharField(max_length=50)
     edificio = models.CharField(max_length=100, blank=True, null=True)
     piso = models.IntegerField(blank=True, null=True)
-    id_facultad = models.ForeignKey('Facultad', models.DO_NOTHING, db_column='id_facultad', blank=True, null=True)
+    id_facultad = models.ForeignKey(
+        "Facultad", models.DO_NOTHING, db_column="id_facultad", blank=True, null=True
+    )
     uso_general = models.BooleanField(blank=True, null=True)
 
     class Meta:
         managed = False
-        db_table = 'aula'
+        db_table = "aula"
 
 
 class Carrera(models.Model):
     id_carrera = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=100)
     codigo = models.CharField(unique=True, max_length=20)
-    id_facultad = models.ForeignKey('Facultad', models.DO_NOTHING, db_column='id_facultad')
+    id_facultad = models.ForeignKey(
+        "Facultad", models.DO_NOTHING, db_column="id_facultad"
+    )
 
     class Meta:
         managed = False
-        db_table = 'carrera'
+        db_table = "carrera"
 
 
 class Docente(models.Model):
-    id_usuario = models.OneToOneField('Usuario', models.DO_NOTHING, db_column='id_usuario', primary_key=True)
+    id_usuario = models.OneToOneField(
+        "Usuario", models.DO_NOTHING, db_column="id_usuario", primary_key=True
+    )
     modalidad_contratacion = models.CharField(max_length=50, blank=True, null=True)
     tiempo_dedicacion = models.CharField(max_length=50, blank=True, null=True)
 
     class Meta:
         managed = False
-        db_table = 'docente'
+        db_table = "docente"
 
 
 class Facultad(models.Model):
@@ -67,7 +75,7 @@ class Facultad(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'facultad'
+        db_table = "facultad"
 
 
 class HoraClase(models.Model):
@@ -78,21 +86,27 @@ class HoraClase(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'hora_clase'
+        db_table = "hora_clase"
 
 
 class Horario(models.Model):
     id_horario = models.AutoField(primary_key=True)
-    id_hora_clase = models.ForeignKey('HoraClase', models.DO_NOTHING, db_column='id_hora_clase')
-    id_usuario = models.ForeignKey('Usuario', models.DO_NOTHING, db_column='id_usuario')
-    id_asignatura = models.ForeignKey('Asignatura', models.DO_NOTHING, db_column='id_asignatura')
-    id_aula = models.ForeignKey('Aula', models.DO_NOTHING, db_column='id_aula')
+    id_hora_clase = models.ForeignKey(
+        "HoraClase", models.DO_NOTHING, db_column="id_hora_clase"
+    )
+    id_usuario = models.ForeignKey("Usuario", models.DO_NOTHING, db_column="id_usuario")
+    id_asignatura = models.ForeignKey(
+        "Asignatura", models.DO_NOTHING, db_column="id_asignatura"
+    )
+    id_aula = models.ForeignKey("Aula", models.DO_NOTHING, db_column="id_aula")
     paralelo = models.IntegerField()
-    semestre_lectivo = models.CharField(max_length=50)
+    id_semestre_lectivo = models.ForeignKey(
+        "SemestreLectivo", models.DO_NOTHING, db_column="id_semestre_lectivo"
+    )
 
     class Meta:
         managed = False
-        db_table = 'horario'
+        db_table = "horario"
 
 
 class Rol(models.Model):
@@ -101,7 +115,21 @@ class Rol(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'rol'
+        db_table = "rol"
+
+
+class SemestreLectivo(models.Model):
+    id_semestre_lectivo = models.AutoField(primary_key=True)
+    anio_inicio = models.IntegerField()
+    anio_fin = models.IntegerField()
+    periodo = models.CharField(max_length=1)
+
+    class Meta:
+        managed = False
+        db_table = "semestre_lectivo"
+
+    def __str__(self):
+        return f"{self.anio_inicio}-{self.anio_fin} {self.periodo}"
 
 
 class Usuario(models.Model):
@@ -111,7 +139,7 @@ class Usuario(models.Model):
     cedula = models.CharField(unique=True, max_length=10)
     correo = models.CharField(unique=True, max_length=100)
     password = models.TextField()
-    id_rol = models.ForeignKey('Rol', models.DO_NOTHING, db_column='id_rol')
+    id_rol = models.ForeignKey("Rol", models.DO_NOTHING, db_column="id_rol")
 
     @property
     def id(self):
@@ -119,47 +147,47 @@ class Usuario(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'usuario'
+        db_table = "usuario"
 
 
 class UsuarioAsignatura(models.Model):
     id = models.AutoField(primary_key=True)
-    id_usuario = models.ForeignKey('Usuario', models.DO_NOTHING, db_column='id_usuario')
-    id_asignatura = models.ForeignKey('Asignatura', models.DO_NOTHING, db_column='id_asignatura')
+    id_usuario = models.ForeignKey("Usuario", models.DO_NOTHING, db_column="id_usuario")
+    id_asignatura = models.ForeignKey(
+        "Asignatura", models.DO_NOTHING, db_column="id_asignatura"
+    )
     paralelo = models.IntegerField()
 
     class Meta:
         managed = False
-        db_table = 'usuario_asignatura'
+        db_table = "usuario_asignatura"
 
 
 class UsuarioAsignaturaEstudiante(models.Model):
     id = models.AutoField(primary_key=True)
-    id_usuario = models.ForeignKey('Usuario', models.DO_NOTHING, db_column='id_usuario')
-    id_asignatura = models.ForeignKey('Asignatura', models.DO_NOTHING, db_column='id_asignatura')
+    id_usuario = models.ForeignKey("Usuario", models.DO_NOTHING, db_column="id_usuario")
+    id_asignatura = models.ForeignKey(
+        "Asignatura", models.DO_NOTHING, db_column="id_asignatura"
+    )
     paralelo = models.IntegerField()
 
     class Meta:
         managed = False
-        db_table = 'usuario_asignatura_estudiante'
+        db_table = "usuario_asignatura_estudiante"
 
 
 class UsuarioCarrera(models.Model):
     id = models.AutoField(primary_key=True)
 
     id_usuario = models.ForeignKey(
-        'Usuario',
+        "Usuario",
         models.DO_NOTHING,
-        db_column='id_usuario',
-        related_name='carreras_asociadas'  # 👈 Relación inversa
+        db_column="id_usuario",
+        related_name="carreras_asociadas",  # 👈 Relación inversa
     )
 
-    id_carrera = models.ForeignKey(
-        'Carrera',
-        models.DO_NOTHING,
-        db_column='id_carrera'
-    )
+    id_carrera = models.ForeignKey("Carrera", models.DO_NOTHING, db_column="id_carrera")
 
     class Meta:
         managed = False
-        db_table = 'usuario_carrera'
+        db_table = "usuario_carrera"
