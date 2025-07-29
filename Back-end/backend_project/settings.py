@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     "apps.usuario_asignatura_estudiante",
     "apps.horario",
     "apps.semestre_lectivo",
+    "apps.core"
 ]
 
 REST_FRAMEWORK = {

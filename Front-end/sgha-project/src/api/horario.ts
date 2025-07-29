@@ -67,3 +67,11 @@ export const getHorariosPorDocente = async (id: number) => {
   if (!res.ok) throw new Error("Error al obtener horarios del docente");
   return await res.json();
 };
+
+export const getHorariosPorEstudiante = async (id: number) => {
+  const res = await fetch(`${HORARIO_URL}estudiante/${id}/`, {
+    headers: getAuthHeaders(),
+  });
+  if (!res.ok) throw new Error("Error al obtener horarios del estudiante");
+  return await res.json();
+};

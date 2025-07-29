@@ -72,8 +72,8 @@ class UsuarioSerializer(serializers.ModelSerializer):
 # Si id_rol = 1 o 2: el campo carreras es obligatorio y debe contener al menos un ID válido. Si id_rol = 3 o 4: el campo se puede omitir o dejar vacío.
 class RegistroSerializer(serializers.ModelSerializer):
     # Campos adicionales para Docente (solo entrada)
-    modalidad_contratacion = serializers.CharField(required=False, write_only=True)
-    tiempo_dedicacion = serializers.CharField(required=False, write_only=True)
+    modalidad_contratacion = serializers.CharField(required=False, allow_blank=True, write_only=True)
+    tiempo_dedicacion = serializers.CharField(required=False, allow_blank=True, write_only=True)
 
     # Entrada
     carreras = serializers.ListField(child=serializers.IntegerField(), write_only=True)

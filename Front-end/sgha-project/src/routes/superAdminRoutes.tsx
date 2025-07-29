@@ -12,6 +12,10 @@ import UsuarioCarreraPage from "../pages/features/UsuarioCarreraPage";
 import UsuarioAsignaturaPage from "../pages/features/UsuarioAsignaturaPage";
 import UsuarioAsignaturaEstudiantePage from "../pages/features/UsuarioAsignaturaEstudiantePage";
 import HorarioPage from "../pages/features/HorarioPage";
+import SemestreLectivoPage from "../pages/features/SemestreLectivo";
+import UsuariosPage from "../pages/features/Usuarios";
+import ReportesPage from "../pages/features/Reportes";
+import LogsPage from "../pages/features/Logs";
 
 const superAdminRoutes: RouteObject[] = [
   {
@@ -65,6 +69,22 @@ const superAdminRoutes: RouteObject[] = [
       {
         path: "horario",
         element: <HorarioPage />,
+      },
+      {
+        path: "semestre-lectivo",
+        element: <SemestreLectivoPage />,
+      },
+      {
+        path: "usuarios",
+        element: <UsuariosPage />,
+      },
+      {
+        path: "reportes",
+        element: <ReportesPage />,
+      },
+      {
+        path: "logs",
+        element: <LogsPage />,
       },
     ],
   },

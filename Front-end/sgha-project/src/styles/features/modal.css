@@ -1,0 +1,267 @@
+/* === Fondo del Modal (overlay) === */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(15, 23, 42, 0.85);
+  z-index: 9999;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* Asegurar que ocupe toda la pantalla */
+  width: 100vw;
+  height: 100vh;
+
+  /* Evitar scroll del body */
+  overflow: hidden;
+
+  /* Padding para dispositivos móviles */
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+/* === Contenedor del modal === */
+.modal-content {
+  background-color: #ffffff;
+  padding: 2rem 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+
+  /* Dimensiones responsivas */
+  width: 100%;
+  max-width: 900px;
+  max-height: 90vh;
+
+  /* Scroll interno si es necesario */
+  overflow-y: auto;
+
+  position: relative;
+  border: 3px solid #2563eb;
+
+  /* Animación de aparición */
+  animation: fadeInModal 0.3s ease-in-out;
+
+  /* Centrado perfecto */
+  margin: auto;
+
+  /* Asegurar que no se salga de la pantalla */
+  box-sizing: border-box;
+}
+
+/* === Animación de aparición === */
+@keyframes fadeInModal {
+  from {
+    opacity: 0;
+    transform: translateY(-30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* === Botón de cierre === */
+.modal-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background-color: #ef4444;
+  color: #ffffff;
+  border: none;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 8px;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 10001;
+  min-width: 40px;
+  min-height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-close:hover {
+  background-color: #dc2626;
+  transform: scale(1.05);
+}
+
+.modal-close:active {
+  transform: scale(0.95);
+}
+
+/* === Título dentro del modal === */
+.modal-content h2 {
+  margin-top: 0;
+  font-size: 1.5rem;
+  text-align: center;
+  color: #1e3a8a;
+  margin-bottom: 1.5rem;
+  padding-right: 50px; /* Espacio para el botón de cerrar */
+  line-height: 1.3;
+}
+
+/* === Tabla dentro del modal === */
+.modal-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  margin-top: 1rem;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.modal-table th,
+.modal-table td {
+  border: 1px solid #e5e7eb;
+  padding: 0.75rem 0.5rem;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.modal-table th {
+  background-color: #2563eb;
+  color: white;
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.modal-table td {
+  background-color: #f9fafb;
+  color: #1f2937;
+  font-size: 0.85rem;
+}
+
+.modal-table tbody tr:nth-child(even) {
+  background-color: #f3f4f6;
+}
+
+.modal-table tbody tr:hover {
+  background-color: #e5e7eb;
+  transition: background-color 0.2s ease;
+}
+
+/* === Mensaje cuando no hay datos === */
+.modal-content p {
+  text-align: center;
+  color: #6b7280;
+  font-size: 1rem;
+  margin: 2rem 0;
+  padding: 1rem;
+  background-color: #f9fafb;
+  border-radius: 8px;
+  border: 1px dashed #d1d5db;
+}
+
+/* === Responsive Design === */
+@media (max-width: 768px) {
+  .modal-overlay {
+    padding: 0.5rem;
+  }
+
+  .modal-content {
+    padding: 1.5rem 1rem;
+    max-height: 95vh;
+    border-radius: 8px;
+  }
+
+  .modal-content h2 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    padding-right: 45px;
+  }
+
+  .modal-close {
+    top: 8px;
+    right: 8px;
+    font-size: 14px;
+    padding: 6px 10px;
+  }
+
+  .modal-table {
+    font-size: 0.8rem;
+  }
+
+  .modal-table th,
+  .modal-table td {
+    padding: 0.5rem 0.3rem;
+    font-size: 0.75rem;
+  }
+
+  .modal-table th {
+    font-size: 0.7rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .modal-overlay {
+    padding: 0.25rem;
+  }
+
+  .modal-content {
+    padding: 1.25rem 0.75rem;
+    max-height: 98vh;
+    border-radius: 6px;
+  }
+
+  .modal-content h2 {
+    font-size: 1.1rem;
+    padding-right: 40px;
+  }
+
+  .modal-close {
+    top: 6px;
+    right: 6px;
+    font-size: 12px;
+    padding: 4px 8px;
+    min-width: 32px;
+    min-height: 28px;
+  }
+
+  .modal-table {
+    font-size: 0.7rem;
+  }
+
+  .modal-table th,
+  .modal-table td {
+    padding: 0.4rem 0.2rem;
+    font-size: 0.65rem;
+  }
+
+  /* Hacer la tabla scrolleable horizontalmente en móviles muy pequeños */
+  .modal-table {
+    min-width: 600px;
+  }
+
+  .modal-content {
+    overflow-x: auto;
+  }
+}
+
+/* === Prevenir scroll del body cuando el modal está abierto === */
+body.modal-open {
+  overflow: hidden;
+  height: 100vh;
+}
+
+/* === Asegurar que el modal esté por encima de todo === */
+.modal-overlay {
+  z-index: 999999 !important;
+}
+
+.modal-content {
+  z-index: 1000000 !important;
+  position: relative;
+}
+
+.modal-close {
+  z-index: 1000001 !important;
+}

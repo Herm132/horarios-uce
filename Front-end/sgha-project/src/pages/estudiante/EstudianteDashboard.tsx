@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
-import { getHorarios } from "../../api/horario";
-import "../../styles/features/estudianteHorario.css";
+import { getHorariosPorEstudiante } from "../../api/horario";
+import "../../styles/features/horarioDocenteEstudiante.css";
+import { useAuth } from "../../auth/AuthContext";
+import { generarHorarioEstudiantePDF } from "../features/generarHorarioEstudiantePDF";
 
 interface Usuario {
   nombres: string;
@@ -44,14 +46,17 @@ const diasSemana = [
 
 const EstudianteDashboard = () => {
   const [horarios, setHorarios] = useState<Horario[]>([]);
+  const { usuario } = useAuth();
 
   useEffect(() => {
     const cargar = async () => {
-      const res = await getHorarios();
-      setHorarios(res);
+      if (usuario) {
+        const res = await getHorariosPorEstudiante(usuario.id_usuario);
+        setHorarios(res);
+      }
     };
     cargar();
-  }, []);
+  }, [usuario]);
 
   const horasUnicas = Array.from(
     new Set(horarios.map((h) => h.hora_clase.id_hora_clase))
@@ -104,6 +109,16 @@ const EstudianteDashboard = () => {
             </tr>
           ))}
         </tbody>
+        <button
+          className="btn-descargar-horario"
+          onClick={() =>
+            generarHorarioEstudiantePDF(
+              `${usuario?.nombres ?? ""} ${usuario?.apellidos ?? ""}`,
+              horarios
+            )
+          }>
+          📥 Descargar Horario
+        </button>
       </table>
     </div>
   );

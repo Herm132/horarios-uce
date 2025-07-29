@@ -1,0 +1,255 @@
+.horario-tabla-container {
+  padding: 1rem;
+  background-color: transparent;
+  font-family: "Inter", sans-serif;
+  margin: 0 auto;
+  width: 95%;
+  max-width: 1600px;
+  margin-top: 5rem;
+}
+
+.horario-tabla-container h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #1d252c;
+  font-size: 1.5rem;
+}
+
+.tabla-horario {
+  width: 100%;
+  border-collapse: collapse;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.tabla-horario th,
+.tabla-horario td {
+  border: 1px solid #ddd;
+  padding: 0.75rem;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 0.95rem;
+}
+
+.tabla-horario th {
+  background-color: #f4b223;
+  color: #1d252c;
+  font-weight: 600;
+}
+
+.columna-hora {
+  background-color: #f0f0f0;
+  font-weight: bold;
+  color: #333;
+  white-space: nowrap;
+}
+
+.celda-horario {
+  background-color: #ffffff;
+  border-radius: 4px;
+  padding: 0.4rem;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.03);
+  line-height: 1.3;
+  min-height: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.celda-horario strong {
+  display: block;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 0.2rem;
+}
+
+.celda-horario span {
+  font-size: 0.85rem;
+  color: #666;
+  display: block;
+  margin-bottom: 0.1rem;
+}
+
+/* Estilos responsive para tablets */
+@media (max-width: 768px) {
+  .horario-tabla-container {
+    padding: 0.5rem;
+    margin: 0;
+    max-width: 100%;
+    background-color: transparent;
+    min-height: auto;
+  }
+
+  .horario-tabla-container h2 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+  }
+
+  .tabla-horario th,
+  .tabla-horario td {
+    padding: 0.5rem 0.3rem;
+    font-size: 0.85rem;
+  }
+
+  .tabla-horario th {
+    font-size: 0.8rem;
+    padding: 0.6rem 0.2rem;
+  }
+
+  .celda-horario {
+    padding: 0.3rem;
+    min-height: 50px;
+  }
+
+  .celda-horario strong {
+    font-size: 0.8rem;
+  }
+
+  .celda-horario span {
+    font-size: 0.7rem;
+  }
+}
+
+/* Estilos responsive para móviles */
+@media (max-width: 480px) {
+  .horario-tabla-container {
+    padding: 0.5rem 0.3rem;
+    background-color: transparent;
+    margin: 0;
+    min-height: auto;
+    height: auto;
+  }
+
+  .horario-tabla-container h2 {
+    font-size: 1.2rem;
+    margin-bottom: 0.8rem;
+    padding: 0;
+  }
+
+  /* Hacer la tabla scrolleable horizontalmente */
+  .tabla-horario {
+    font-size: 0.75rem;
+    min-width: 600px; /* Ancho mínimo para mantener legibilidad */
+    margin-bottom: 0;
+  }
+
+  /* Contenedor con scroll horizontal */
+  .horario-tabla-container {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 0.5rem;
+  }
+
+  .tabla-horario th,
+  .tabla-horario td {
+    padding: 0.4rem 0.2rem;
+    font-size: 0.7rem;
+    min-width: 80px;
+  }
+
+  .tabla-horario th {
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.5rem 0.2rem;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+  }
+
+  .columna-hora {
+    font-size: 0.65rem;
+    padding: 0.3rem 0.15rem;
+    min-width: 70px;
+    position: sticky;
+    left: 0;
+    z-index: 3;
+    background-color: #f0f0f0;
+  }
+
+  /* Asegurar que el encabezado de hora esté por encima */
+  .tabla-horario th:first-child {
+    position: sticky;
+    left: 0;
+    z-index: 4;
+    background-color: #f4b223;
+  }
+
+  .celda-horario {
+    padding: 0.25rem;
+    min-height: 40px;
+    font-size: 0.65rem;
+  }
+
+  .celda-horario strong {
+    font-size: 0.7rem;
+    margin-bottom: 0.1rem;
+    line-height: 1.1;
+  }
+
+  .celda-horario span {
+    font-size: 0.6rem;
+    line-height: 1.1;
+    margin-bottom: 0.05rem;
+  }
+
+  /* Agregar indicador de scroll */
+  .horario-tabla-container::after {
+    content: "← Desliza para ver más →";
+    display: block;
+    text-align: center;
+    font-size: 0.7rem;
+    color: #666;
+    margin-top: 0.3rem;
+    margin-bottom: 0;
+    font-style: italic;
+  }
+}
+
+/* Estilos para móviles muy pequeños */
+@media (max-width: 320px) {
+  .horario-tabla-container h2 {
+    font-size: 1.1rem;
+  }
+
+  .tabla-horario {
+    min-width: 550px;
+  }
+
+  .tabla-horario th,
+  .tabla-horario td {
+    min-width: 75px;
+    padding: 0.3rem 0.15rem;
+  }
+
+  .columna-hora {
+    min-width: 65px;
+    font-size: 0.6rem;
+  }
+
+  .celda-horario strong {
+    font-size: 0.65rem;
+  }
+
+  .celda-horario span {
+    font-size: 0.55rem;
+  }
+}
+
+.btn-descargar-horario {
+  background-color: #1a73e8;
+  color: white;
+  font-weight: bold;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin: 10px 0;
+  transition: background-color 0.3s ease;
+  font-size: 14px;
+}
+
+.btn-descargar-horario:hover {
+  background-color: #1558b0;
+}

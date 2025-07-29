@@ -12,6 +12,8 @@ import UsuarioCarreraPage from "../pages/features/UsuarioCarreraPage";
 import UsuarioAsignaturaPage from "../pages/features/UsuarioAsignaturaPage";
 import UsuarioAsignaturaEstudiantePage from "../pages/features/UsuarioAsignaturaEstudiantePage";
 import HorarioPage from "../pages/features/HorarioPage";
+import SemestreLectivoPage from "../pages/features/SemestreLectivo";
+import ReportesPage from "../pages/features/Reportes";
 
 const AdminRoutes: RouteObject[] = [
   {
@@ -65,6 +67,14 @@ const AdminRoutes: RouteObject[] = [
       {
         path: "horario",
         element: <HorarioPage />,
+      },
+      {
+        path: "semestre-lectivo",
+        element: <SemestreLectivoPage />,
+      },
+      {
+        path: "reportes",
+        element: <ReportesPage />,
       },
     ],
   },

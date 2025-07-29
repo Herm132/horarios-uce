@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
-import { getHorarios } from "../../api/horario";
-import "../../styles/features/horarioDocente.css";
+import { getHorariosPorDocente } from "../../api/horario";
+import { useAuth } from "../../auth/AuthContext";
+import "../../styles/features/horarioDocenteEstudiante.css";
+import { generarHorarioDocentePDF } from "../features/generarHorarioDocentePDF";
 
 interface Horario {
   id_horario: number;
@@ -31,19 +33,22 @@ const diasSemana = [
 
 const DocenteDashboard = () => {
   const [horarios, setHorarios] = useState<Horario[]>([]);
+  const { usuario } = useAuth(); // 👈 para obtener el ID del docente autenticado
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await getHorarios();
-        setHorarios(data);
+        if (usuario) {
+          const data = await getHorariosPorDocente(usuario.id_usuario); // 👈 llamado con su ID
+          setHorarios(data);
+        }
       } catch (err) {
         console.error("Error al obtener horarios del docente", err);
       }
     };
 
     fetchData();
-  }, []);
+  }, [usuario]);
 
   const horasUnicas = Array.from(
     new Set(
@@ -63,7 +68,7 @@ const DocenteDashboard = () => {
 
   return (
     <div className="horario-tabla-container">
-      <h2>Mi Horario como Docente</h2>
+      <h2>📘 Mi Horario como Docente</h2>
       <table className="tabla-horario">
         <thead>
           <tr>
@@ -100,6 +105,16 @@ const DocenteDashboard = () => {
             </tr>
           ))}
         </tbody>
+        <button
+          className="btn-descargar-horario"
+          onClick={() =>
+            generarHorarioDocentePDF(
+              `${usuario?.nombres ?? ""} ${usuario?.apellidos ?? ""}`,
+              horarios
+            )
+          }>
+          📥 Descargar Horario
+        </button>
       </table>
     </div>
   );

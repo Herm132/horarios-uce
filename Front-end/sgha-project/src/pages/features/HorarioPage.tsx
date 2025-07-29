@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Modal from "./Modal";
 import {
   getHorarios,
   crearHorario,
@@ -71,6 +72,9 @@ const HorarioPage = () => {
   const [anioLectivoConsulta, setAnioLectivoConsulta] = useState("");
 
   const [dragHorarioId, setDragHorarioId] = useState<string | null>(null);
+
+  const [mostrarModal, setMostrarModal] = useState(false);
+  const [horariosDocente, setHorariosDocente] = useState<Horario[]>([]);
 
   const [horarios, setHorarios] = useState<Horario[]>([]);
   const [usuarios, setUsuarios] = useState<Usuario[]>([]);
@@ -195,10 +199,9 @@ const HorarioPage = () => {
   const buscarPorDocente = async () => {
     if (!formData.id_usuario) return;
     try {
-      const horariosDocente = await getHorariosPorDocente(
-        Number(formData.id_usuario)
-      );
-      setHorarios(horariosDocente);
+      const response = await getHorariosPorDocente(Number(formData.id_usuario));
+      setHorariosDocente(response);
+      setMostrarModal(true);
     } catch (error) {
       console.error("Error al buscar horarios por docente", error);
     }
@@ -228,44 +231,6 @@ const HorarioPage = () => {
     const target = e.target as HTMLElement;
     const idHorario = target.dataset.idhorario;
     e.dataTransfer?.setData("text/plain", idHorario || "");
-  };
-
-  const handleDragOver = (e: DragEvent) => {
-    e.preventDefault();
-    const target = e.currentTarget as HTMLElement;
-    target.classList.add("drag-over"); // Agrega color visual
-  };
-
-  const handleDrop = async (e: DragEvent) => {
-    e.preventDefault();
-    const idHorario = e.dataTransfer?.getData("text/plain");
-    const target = e.currentTarget as HTMLElement;
-    target.classList.remove("drag-over");
-    const dia = target.dataset.dia;
-    const horaInicio = target.dataset.horainicio;
-    const horaFin = target.dataset.horafin;
-
-    const franja = horasClase.find(
-      (h) =>
-        h.dia === dia && h.hora_inicio === horaInicio && h.hora_fin === horaFin
-    );
-
-    if (!idHorario || !franja) return;
-
-    const horario = horarios.find((h) => h.id_horario === Number(idHorario));
-    if (!horario) return;
-
-    const payload = {
-      id_asignatura: horario.asignatura.id_asignatura,
-      id_aula: horario.aula.id_aula,
-      id_hora_clase: franja.id_hora_clase,
-      id_usuario: horario.usuario.id_usuario,
-      paralelo: horario.paralelo,
-      id_semestre_lectivo: horario.semestre_lectivo.id_semestre_lectivo,
-    };
-
-    await actualizarHorario(horario.id_horario, payload);
-    await cargarDatos();
   };
 
   return (
@@ -684,6 +649,47 @@ const HorarioPage = () => {
           }
         )}
       </div>
+      {mostrarModal && (
+        <Modal onClose={() => setMostrarModal(false)}>
+          <h2>📋 Horarios del Docente</h2>
+          {horariosDocente.length > 0 ? (
+            <table className="modal-table">
+              <thead>
+                <tr>
+                  <th>Asignatura</th>
+                  <th>Código</th>
+                  <th>Día</th>
+                  <th>Hora</th>
+                  <th>Aula</th>
+                  <th>Paralelo</th>
+                  <th>Período</th>
+                </tr>
+              </thead>
+              <tbody>
+                {horariosDocente.map((h) => (
+                  <tr key={h.id_horario}>
+                    <td>{h.asignatura.nombre}</td>
+                    <td>{h.asignatura.codigo}</td>
+                    <td>{h.hora_clase.dia}</td>
+                    <td>
+                      {h.hora_clase.hora_inicio} - {h.hora_clase.hora_fin}
+                    </td>
+                    <td>{h.aula.nombre}</td>
+                    <td>{h.paralelo}</td>
+                    <td>
+                      {h.semestre_lectivo.anio_inicio}-
+                      {h.semestre_lectivo.anio_fin} (
+                      {h.semestre_lectivo.periodo})
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          ) : (
+            <p>Este docente no tiene horarios asignados.</p>
+          )}
+        </Modal>
+      )}
     </div>
   );
 };

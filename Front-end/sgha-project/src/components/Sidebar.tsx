@@ -6,8 +6,12 @@ import "../styles/components/Sidebar.css";
 const Sidebar = () => {
   const location = useLocation();
   const { usuario } = useAuth();
-  const basePath = `/dashboard/${usuario?.rol.nombre_rol.toLowerCase()}`;
 
+  if (usuario?.rol.id_rol === 1 || usuario?.rol.id_rol === 2) {
+    return null;
+  }
+
+  const basePath = `/dashboard/${usuario?.rol.nombre_rol.toLowerCase()}`;
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
@@ -28,7 +32,6 @@ const Sidebar = () => {
   };
 
   const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
-
   const handleOverlayClick = () => setIsMobileMenuOpen(false);
 
   useEffect(() => {
@@ -179,6 +182,36 @@ const Sidebar = () => {
                   onClick={handleLinkClick}>
                   Estudiantes - Asignaturas
                 </Link>
+                <Link
+                  to={`${basePath}/semestre-lectivo`}
+                  className={`sidebar-menu-item ${
+                    location.pathname.includes("semestre-lectivo")
+                      ? "selected"
+                      : ""
+                  }`}
+                  onClick={handleLinkClick}>
+                  Años Lectivos
+                </Link>
+                {usuario?.rol.id_rol === 4 && (
+                  <Link
+                    to={`${basePath}/usuarios`}
+                    className={`sidebar-menu-item ${
+                      location.pathname.includes("usuarios") ? "selected" : ""
+                    }`}
+                    onClick={handleLinkClick}>
+                    Gestión de Usuarios
+                  </Link>
+                )}
+                {usuario?.rol.id_rol === 4 && (
+                  <Link
+                    to={`${basePath}/logs`}
+                    className={`sidebar-menu-item ${
+                      location.pathname.includes("logs") ? "selected" : ""
+                    }`}
+                    onClick={handleLinkClick}>
+                    Reporte de Logs
+                  </Link>
+                )}
               </div>
             </div>
           </div>
@@ -227,7 +260,14 @@ const Sidebar = () => {
               className="accordion-collapse collapse"
               data-bs-parent="#accordionSidebar">
               <div className="accordion-body p-0">
-                <span className="text-white px-3">Próximamente...</span>
+                <Link
+                  to={`${basePath}/reportes`}
+                  className={`sidebar-menu-item ${
+                    location.pathname.includes("reportes") ? "selected" : ""
+                  }`}
+                  onClick={handleLinkClick}>
+                  Generar Reportes
+                </Link>
               </div>
             </div>
           </div>

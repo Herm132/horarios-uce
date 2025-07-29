@@ -16,4 +16,5 @@ urlpatterns = [
     path("api/superadmin/", include("apps.usuario_asignatura_estudiante.urls")),
     path("api/superadmin/", include("apps.horario.urls")),
     path("api/superadmin/", include("apps.semestre_lectivo.urls")),
+    path("api/superadmin/", include("apps.core.urls")),
 ]
