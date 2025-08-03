@@ -103,6 +103,27 @@ const HorarioPage = () => {
     cargarDatos();
   }, []);
 
+  const formatearErrores = (errorObj: any): string[] => {
+    if (!errorObj || typeof errorObj !== "object") return ["Error inesperado."];
+
+    const mensajes: string[] = [];
+
+    for (const clave in errorObj) {
+      const errores = errorObj[clave];
+      const textoCampo = clave === "non_field_errors" ? "" : `${clave}: `;
+
+      if (Array.isArray(errores)) {
+        errores.forEach((err: string) => {
+          mensajes.push(`${textoCampo}${err}`);
+        });
+      } else if (typeof errores === "string") {
+        mensajes.push(`${textoCampo}${errores}`);
+      }
+    }
+
+    return mensajes;
+  };
+
   const cargarDatos = async () => {
     const [h, u, a, au, hc, sl] = await Promise.all([
       getHorarios(),
@@ -162,14 +183,17 @@ const HorarioPage = () => {
 
       if (modoEditar && idHorarioEditando) {
         await actualizarHorario(idHorarioEditando, payload);
+        alert("Horario actualizado correctamente.");
       } else {
         await crearHorario(payload);
+        alert("Horario creado correctamente.");
       }
 
       resetForm();
       await cargarDatos();
-    } catch (error) {
-      console.error("Error al guardar el horario", error);
+    } catch (error: any) {
+      const mensaje = formatearErrores(error);
+      alert("❌ Error:\n\n" + mensaje.join("\n"));
     }
   };
 
@@ -236,10 +260,6 @@ const HorarioPage = () => {
   return (
     <div className="horario-container">
       <div className="header-section">
-        {/* <h1 className="main-title">
-          <span className="title-icon">📅</span>
-          {modoEditar ? "Editar Horario" : "Gestión de Horarios"}
-        </h1> */}
         <p className="subtitle">
           Administra los horarios académicos de forma sencilla
         </p>
@@ -626,12 +646,20 @@ const HorarioPage = () => {
                                             .id_semestre_lectivo,
                                       };
 
-                                      await actualizarHorario(
-                                        horario.id_horario,
-                                        payload
-                                      );
-                                      await cargarDatos();
-                                      setDragHorarioId(null);
+                                      try {
+                                        await actualizarHorario(
+                                          horario.id_horario,
+                                          payload
+                                        );
+                                        await cargarDatos();
+                                        setDragHorarioId(null);
+                                      } catch (error: any) {
+                                        const mensaje = formatearErrores(error);
+                                        alert(
+                                          "❌ Error al mover horario:\n\n" +
+                                            mensaje.join("\n")
+                                        );
+                                      }
                                     }}>
                                     <span className="empty-text">Libre</span>
                                   </div>

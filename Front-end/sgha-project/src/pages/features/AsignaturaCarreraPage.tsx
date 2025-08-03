@@ -86,16 +86,32 @@ const AsignaturaCarreraPage = () => {
       setSelectedCarreras([]);
       setEditandoId(null);
       cargarDatos();
-    } catch (err) {
-      console.error("Error al guardar relación", err);
+    } catch (error: any) {
+      const mensaje = formatearErrores(error);
+      alert("❌ Error al guardar:\n\n" + mensaje.join("\n"));
     }
   };
 
-  //   const handleEditar = (rel: Relacion) => {
-  //     setEditandoId(rel.id);
-  //     setSelectedAsignatura(rel.id_asignatura);
-  //     setSelectedCarreras([rel.id_carrera]);
-  //   };
+  const formatearErrores = (errorObj: any): string[] => {
+    if (!errorObj || typeof errorObj !== "object") return ["Error inesperado."];
+
+    const mensajes: string[] = [];
+
+    for (const clave in errorObj) {
+      const errores = errorObj[clave];
+      const textoCampo = clave === "non_field_errors" ? "" : `${clave}: `;
+
+      if (Array.isArray(errores)) {
+        errores.forEach((err: string) => {
+          mensajes.push(`${textoCampo}${err}`);
+        });
+      } else if (typeof errores === "string") {
+        mensajes.push(`${textoCampo}${errores}`);
+      }
+    }
+
+    return mensajes;
+  };
 
   const handleEliminar = async (id: number) => {
     if (!confirm("¿Eliminar esta relación?")) return;

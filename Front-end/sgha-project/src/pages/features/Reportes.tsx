@@ -7,6 +7,7 @@ import { getHorasClase } from "../../api/horaClase";
 import { useAuth } from "../../auth/AuthContext";
 import "../../styles/features/reportes.css";
 import logoUce from "/Encabezado.png";
+import { getAulas } from "../../api/aulas";
 
 interface Asignatura {
   id_asignatura: number;
@@ -65,6 +66,8 @@ const ReportesPage = () => {
   const [semestresDisponibles, setSemestresDisponibles] = useState<number[]>(
     []
   );
+  const [aulas, setAulas] = useState<Aula[]>([]);
+  const [aulaSeleccionada, setAulaSeleccionada] = useState<string>("");
 
   // Paleta de colores unificada
   const colores = {
@@ -161,7 +164,9 @@ const ReportesPage = () => {
       const h = hRaw as Horario[];
       const sl = slRaw as SemestreLectivo[];
       const hc = hcRaw as HoraClase[];
+      const aulasData = await getAulas();
 
+      setAulas(aulasData);
       setHorarios(h);
       setSemestresLectivos(sl);
       setHorasClase(hc);
@@ -536,40 +541,266 @@ const ReportesPage = () => {
     window.open(doc.output("bloburl"), "_blank");
   };
 
+  const exportarPDFHorariosPorAula = async () => {
+    const doc = new jsPDF();
+
+    const aulas = await getAulas();
+
+    if (!anioLectivoConsulta) {
+      alert("⚠️ Debes seleccionar un año lectivo.");
+      return;
+    }
+
+    const horariosPorAnio = horarios.filter(
+      (h) =>
+        h.semestre_lectivo.id_semestre_lectivo === Number(anioLectivoConsulta)
+    );
+
+    if (horariosPorAnio.length === 0) {
+      alert("⚠️ No hay horarios registrados para el año lectivo seleccionado.");
+      return;
+    }
+
+    const franjasHorarias = horasClase
+      .map((h) => `${h.hora_inicio} - ${h.hora_fin}`)
+      .filter((v, i, arr) => arr.indexOf(v) === i);
+
+    const diasSemana = [
+      "Lunes",
+      "Martes",
+      "Miércoles",
+      "Jueves",
+      "Viernes",
+      "Sábado",
+    ];
+
+    const semestreLectivoInfo = semestresLectivos.find(
+      (sl) => sl.id_semestre_lectivo === Number(anioLectivoConsulta)
+    );
+
+    const aulasFiltradas = aulaSeleccionada
+      ? aulas.filter(
+          (a: { id_aula: number }) => a.id_aula === Number(aulaSeleccionada)
+        )
+      : aulas;
+
+    const tieneHorarios = aulasFiltradas.some((aula: { id_aula: number }) =>
+      horariosPorAnio.some((h) => h.aula.id_aula === aula.id_aula)
+    );
+
+    if (!tieneHorarios) {
+      alert("⚠️ No hay horarios registrados para el aula seleccionada.");
+      return;
+    }
+
+    let pagina = 1;
+
+    for (const aula of aulasFiltradas) {
+      const horariosAula = horariosPorAnio.filter(
+        (h) => h.aula.id_aula === aula.id_aula
+      );
+      if (horariosAula.length === 0) continue;
+
+      if (pagina > 1) doc.addPage();
+
+      const startY = dibujarEncabezadoUnificado(doc, img, semestreLectivoInfo);
+
+      doc.setFont("helvetica", "bold");
+      doc.setFontSize(12);
+      doc.setTextColor(0, 0, 0);
+      doc.text(`AULA: ${aula.nombre}`, 20, startY + 10);
+      doc.setFontSize(10);
+      doc.text(`Tipo: ${aula.tipo}`, 20, startY + 17);
+      doc.text(`Capacidad: ${aula.capacidad}`, 20, startY + 23);
+      doc.text(`Edificio: ${aula.edificio}`, 80, startY + 17);
+      doc.text(`Piso: ${aula.piso}`, 80, startY + 23);
+      doc.text(
+        `Uso General: ${aula.uso_general ? "Sí" : "No"}`,
+        140,
+        startY + 17
+      );
+
+      const tabla = franjasHorarias.map((franja) => {
+        return [
+          franja,
+          ...diasSemana.map((dia) => {
+            const clase = horariosAula.find(
+              (h) =>
+                h.hora_clase.dia === dia &&
+                `${h.hora_clase.hora_inicio} - ${h.hora_clase.hora_fin}` ===
+                  franja
+            );
+            return clase
+              ? `${clase.asignatura.nombre}\nParalelo ${clase.paralelo}\n${
+                  clase.usuario.nombres.split(" ")[0]
+                } ${clase.usuario.apellidos.split(" ")[0]}`
+              : "";
+          }),
+        ];
+      });
+
+      autoTable(doc, {
+        startY: startY + 35,
+        head: [["HORA", ...diasSemana]],
+        body: tabla,
+        theme: "grid",
+        headStyles: {
+          fillColor: colores.azulOscuro,
+          textColor: colores.blanco,
+          fontSize: 9,
+          fontStyle: "bold",
+          halign: "center",
+        },
+        bodyStyles: {
+          fontSize: 8,
+          textColor: colores.grisTexto,
+          fillColor: colores.grisClaro,
+        },
+        alternateRowStyles: {
+          fillColor: colores.blanco,
+        },
+        columnStyles: {
+          0: {
+            cellWidth: 25,
+            halign: "center",
+            fillColor: [235, 235, 235],
+            fontStyle: "bold",
+          },
+          1: { cellWidth: 26 },
+          2: { cellWidth: 26 },
+          3: { cellWidth: 26 },
+          4: { cellWidth: 26 },
+          5: { cellWidth: 26 },
+          6: { cellWidth: 26 },
+        },
+        margin: { left: 14, right: 14 },
+        tableLineColor: colores.grisLineas,
+        tableLineWidth: 0.5,
+      });
+
+      // Pie de página
+      doc.setFontSize(8);
+      doc.setTextColor(
+        colores.grisTexto[0],
+        colores.grisTexto[1],
+        colores.grisTexto[2]
+      );
+      doc.text(`Página ${pagina}`, 105, 285, { align: "center" });
+      doc.line(14, 280, 196, 280);
+
+      pagina++;
+    }
+
+    // Footer final
+    const totalPages = doc.getNumberOfPages();
+    for (let i = 1; i <= totalPages; i++) {
+      doc.setPage(i);
+      doc.setFontSize(7);
+      doc.setTextColor(
+        colores.grisTexto[0],
+        colores.grisTexto[1],
+        colores.grisTexto[2]
+      );
+      doc.text(
+        `Sistema de Gestión Académica | Generado automáticamente`,
+        105,
+        292,
+        { align: "center" }
+      );
+    }
+
+    window.open(doc.output("bloburl"), "_blank");
+  };
+
   return (
     <div className="reportes-container">
       <h2>📄 Generar Reporte PDF de Horarios</h2>
+      <p className="indicacion">
+        📌 Primero selecciona un <strong>año lectivo</strong> para habilitar los
+        reportes disponibles:
+      </p>
 
-      <div className="filters">
-        <select
-          value={anioLectivoConsulta}
-          onChange={(e) => setAnioLectivoConsulta(e.target.value)}>
-          <option value="">Año lectivo</option>
-          {semestresLectivos.map((s) => (
-            <option key={s.id_semestre_lectivo} value={s.id_semestre_lectivo}>
-              {s.anio_inicio}-{s.anio_fin} ({s.periodo})
-            </option>
-          ))}
-        </select>
-
-        <select
-          value={semestreSeleccionado}
-          onChange={(e) => setSemestreSeleccionado(e.target.value)}>
-          <option value="">Semestre</option>
-          {semestresDisponibles.map((sem) => (
-            <option key={sem} value={sem}>
-              {sem}° Semestre
-            </option>
-          ))}
-        </select>
-
-        <button onClick={exportarPDF}>📥 Exportar PDF</button>
+      <div className="form-section">
+        <div className="form-row">
+          <label htmlFor="anio">📅 Año lectivo</label>
+          <select
+            id="anio"
+            value={anioLectivoConsulta}
+            onChange={(e) => setAnioLectivoConsulta(e.target.value)}>
+            <option value="">Seleccionar</option>
+            {semestresLectivos.map((s) => (
+              <option key={s.id_semestre_lectivo} value={s.id_semestre_lectivo}>
+                {s.anio_inicio}-{s.anio_fin} ({s.periodo})
+              </option>
+            ))}
+          </select>
+        </div>
       </div>
-      <div className="exportar-anual">
-        <button onClick={exportarPDFAnual} disabled={!anioLectivoConsulta}>
-          📥 Exportar PDF Anual
-        </button>
-      </div>
+
+      {anioLectivoConsulta && (
+        <div className="reporte-bloques">
+          {/* Bloque: Reporte por Semestre */}
+          <div className="bloque-reporte">
+            <h3>📘 Reporte por Semestre</h3>
+            <div className="form-row">
+              <label htmlFor="semestre">Seleccionar semestre:</label>
+              <select
+                id="semestre"
+                value={semestreSeleccionado}
+                onChange={(e) => setSemestreSeleccionado(e.target.value)}>
+                <option value="">Seleccionar</option>
+                {semestresDisponibles.map((sem) => (
+                  <option key={sem} value={sem}>
+                    {sem}° Semestre
+                  </option>
+                ))}
+              </select>
+              <button
+                onClick={exportarPDF}
+                disabled={!anioLectivoConsulta || !semestreSeleccionado}>
+                📥 Exportar PDF Semestre
+              </button>
+            </div>
+          </div>
+
+          {/* Bloque: Reporte por Aula */}
+          <div className="bloque-reporte">
+            <h3>🏫 Reporte por Aula</h3>
+            <div className="form-row">
+              <label htmlFor="aula">Seleccionar aula:</label>
+              <select
+                id="aula"
+                value={aulaSeleccionada}
+                onChange={(e) => setAulaSeleccionada(e.target.value)}>
+                <option value="">Todas las aulas</option>
+                {aulas.map((aula) => {
+                  const tieneClases = horarios.some(
+                    (h) => h.aula.id_aula === aula.id_aula
+                  );
+                  return (
+                    <option key={aula.id_aula} value={aula.id_aula}>
+                      {aula.nombre} {tieneClases ? "" : "(sin clases)"}
+                    </option>
+                  );
+                })}
+              </select>
+              <button onClick={exportarPDFHorariosPorAula}>
+                🏫 Exportar PDF Aula
+              </button>
+            </div>
+          </div>
+
+          {/* Bloque: Reporte Anual */}
+          <div className="bloque-reporte">
+            <h3>📊 Reporte Anual General</h3>
+            <div className="form-row">
+              <button onClick={exportarPDFAnual}>
+                📘 Exportar PDF Anual Completo
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

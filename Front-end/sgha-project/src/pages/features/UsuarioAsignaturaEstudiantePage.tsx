@@ -63,6 +63,27 @@ const UsuarioAsignaturaEstudiantePage = () => {
     cargarDatos();
   }, []);
 
+  const formatearErrores = (errorObj: any): string[] => {
+    if (!errorObj || typeof errorObj !== "object") return ["Error inesperado."];
+
+    const mensajes: string[] = [];
+
+    for (const clave in errorObj) {
+      const errores = errorObj[clave];
+      const textoCampo = clave === "non_field_errors" ? "" : `${clave}: `;
+
+      if (Array.isArray(errores)) {
+        errores.forEach((err: string) => {
+          mensajes.push(`${textoCampo}${err}`);
+        });
+      } else if (typeof errores === "string") {
+        mensajes.push(`${textoCampo}${errores}`);
+      }
+    }
+
+    return mensajes;
+  };
+
   const cargarDatos = async () => {
     const usuarios = await getUsuarios();
     const estudiantesFiltrados = usuarios.filter(
@@ -88,14 +109,19 @@ const UsuarioAsignaturaEstudiantePage = () => {
 
   const handleCrear = async () => {
     if (!idUsuario || !idAsignatura) return;
-    await crearUsuarioAsignaturaEstudiante({
-      id_usuario: idUsuario,
-      id_asignatura: idAsignatura,
-      paralelo,
-    });
-    setParalelo(1);
-    setIdAsignatura(null);
-    await cargarAsignaciones(idUsuario);
+    try {
+      await crearUsuarioAsignaturaEstudiante({
+        id_usuario: idUsuario,
+        id_asignatura: idAsignatura,
+        paralelo,
+      });
+      setParalelo(1);
+      setIdAsignatura(null);
+      await cargarAsignaciones(idUsuario);
+    } catch (error: any) {
+      const mensaje = formatearErrores(error);
+      alert("❌ Error:\n\n" + mensaje.join("\n"));
+    }
   };
 
   const handleEliminar = async (id: number) => {

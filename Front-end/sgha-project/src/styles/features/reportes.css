@@ -59,6 +59,91 @@ button:disabled {
   cursor: not-allowed;
 }
 
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.input-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.input-block label {
+  font-weight: 600;
+  color: #2c3e50;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.input-block select,
+.input-block button {
+  width: 100%;
+}
+
+.input-block button {
+  margin-top: 0.3rem;
+}
+
+.indicacion {
+  text-align: center;
+  color: #555;
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.form-section,
+.reporte-bloques {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-row select,
+.form-row button {
+  width: 100%;
+}
+
+.bloque-reporte {
+  background-color: #ffffff;
+  padding: 1.5rem;
+  border: 1px solid #dfe6ec;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.04);
+  margin-top: 15px;
+}
+
+.bloque-reporte h3 {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  color: #2c3e50;
+}
+
+@media (min-width: 768px) {
+  .form-row {
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .form-row select,
+  .form-row button {
+    width: auto;
+    flex: 1;
+  }
+}
+
 @media (max-width: 600px) {
   .filters {
     flex-direction: column;

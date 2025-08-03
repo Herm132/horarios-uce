@@ -24,7 +24,11 @@ export interface HorarioPayload {
 // 🔹 Obtener todos los horarios
 export const getHorarios = async () => {
   const res = await fetch(HORARIO_URL, { headers: getAuthHeaders() });
-  if (!res.ok) throw new Error("Error al obtener horarios");
+  if (!res.ok) {
+    const error = await res.json();
+    throw error;
+  }
+
   return await res.json();
 };
 
@@ -35,7 +39,12 @@ export const crearHorario = async (data: HorarioPayload) => {
     headers: getAuthHeaders(),
     body: JSON.stringify(data),
   });
-  if (!res.ok) throw new Error("Error al crear horario");
+
+  if (!res.ok) {
+    const error = await res.json();
+    throw error;
+  }
+
   return await res.json();
 };
 
@@ -45,8 +54,12 @@ export const eliminarHorario = async (id: number) => {
     method: "DELETE",
     headers: getAuthHeaders(),
   });
-  if (!res.ok) throw new Error("Error al eliminar horario");
-  return true;
+  if (!res.ok) {
+    const error = await res.json();
+    throw error;
+  }
+
+  return await res.json();
 };
 
 // 🔹 Actualizar un horario
@@ -56,7 +69,11 @@ export const actualizarHorario = async (id: number, data: HorarioPayload) => {
     headers: getAuthHeaders(),
     body: JSON.stringify(data),
   });
-  if (!res.ok) throw new Error("Error al actualizar horario");
+  if (!res.ok) {
+    const error = await res.json();
+    throw error;
+  }
+
   return await res.json();
 };
 
@@ -64,7 +81,11 @@ export const getHorariosPorDocente = async (id: number) => {
   const res = await fetch(`${HORARIO_URL}docente/${id}/`, {
     headers: getAuthHeaders(),
   });
-  if (!res.ok) throw new Error("Error al obtener horarios del docente");
+  if (!res.ok) {
+    const error = await res.json();
+    throw error;
+  }
+
   return await res.json();
 };
 
@@ -72,6 +93,10 @@ export const getHorariosPorEstudiante = async (id: number) => {
   const res = await fetch(`${HORARIO_URL}estudiante/${id}/`, {
     headers: getAuthHeaders(),
   });
-  if (!res.ok) throw new Error("Error al obtener horarios del estudiante");
+  if (!res.ok) {
+    const error = await res.json();
+    throw error;
+  }
+
   return await res.json();
 };

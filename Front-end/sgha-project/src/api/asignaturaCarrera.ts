@@ -24,8 +24,10 @@ export const vincularAsignaturaCarreras = async (
     }),
   });
 
-  if (!res.ok) throw new Error("Error al vincular carreras a la asignatura");
-  return await res.json();
+  if (!res.ok) {
+    const errorData = await res.json();
+    throw errorData;
+  }
 };
 
 // 🔹 Obtener todas las relaciones asignatura-carrera agrupadas por asignatura
@@ -62,8 +64,10 @@ export const updateAsignaturaCarrera = async (
       id_carrera: id_carreras,
     }),
   });
-  if (!res.ok) throw new Error("Error al actualizar relación");
-  return await res.json();
+  if (!res.ok) {
+    const errorData = await res.json();
+    throw errorData;
+  }
 };
 
 // 🔹 Obtener todas las asignaturas de una carrera específica
