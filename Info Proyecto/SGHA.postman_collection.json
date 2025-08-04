@@ -1,0 +1,2293 @@
+{
+	"info": {
+		"_postman_id": "15df1eb1-b8bc-4fd2-8432-25b87be39517",
+		"name": "SGHA",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34895640",
+		"_collection_link": "https://sgha-team.postman.co/workspace/SGHA_Development~b67c0d60-d839-49c4-a250-aa36101c3cce/collection/34895640-15df1eb1-b8bc-4fd2-8432-25b87be39517?action=share&source=collection_link&creator=34895640"
+	},
+	"item": [
+		{
+			"name": "Usuarios",
+			"item": [
+				{
+					"name": "Registro Estudantes -Admins",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nombres\": \"Fernando\",\r\n  \"apellidos\": \"Herrera\",\r\n  \"cedula\": \"1352274171\",\r\n  \"correo\": \"ejemplo2.uce@gmail.com\",\r\n  \"password\": \"1234\",\r\n  \"id_rol\": 3,\r\n  \"carreras\": []\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/usuarios/registro/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"usuarios",
+								"registro",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Registro Docente",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nombres\": \"TEST2 ENRIQUE\",\r\n  \"apellidos\": \"TEST2 DONOSO\",\r\n  \"cedula\": \"1114197470\",\r\n  \"correo\": \"TEST2@example.com\",\r\n  \"password\": \"1234\",\r\n  \"id_rol\": 2,\r\n  \"modalidad_contratacion\": \"CONTRATO DE SERVICIOS OCASIONALES\",\r\n  \"tiempo_dedicacion\": \"DOCENTE AUXILIAR MEDIO TIEMPO 20 HORAS NIVEL 1\",\r\n  \"carreras\": [3]\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/usuarios/registro/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"usuarios",
+								"registro",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"correo\": \"oscar.plazarte20@gmail.com\",\r\n  \"password\": \"root\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/usuarios/login/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"usuarios",
+								"login",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Usuarios",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUyMjg3ODM0LCJpYXQiOjE3NTIyNjk4MzQsImp0aSI6ImVmMTRmNzIxMjc3MDQzNThiMjQwNzRmNjYyZGUyMDRlIiwidXNlcl9pZCI6MX0.LHpoo0pjZ6GWEIkEpblWV0Py76hgGHOwy1sJ70XXlug",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/usuarios/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"usuarios",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "CRUDS",
+			"item": [
+				{
+					"name": "Hora Clase",
+					"item": [
+						{
+							"name": "Obtener Hora Clase",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUxOTQxNjI2LCJpYXQiOjE3NTE5MjM2MjYsImp0aSI6ImM1YmVmMjQ0OWFjNTQyMjFiZDAyNDlmZTM3N2E0NjlmIiwidXNlcl9pZCI6MX0._CjOLWX4S62DV77D2QHbnQ9bhjGyuAorha8LrEz9d54",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/api/superadmin/hora-clase/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"superadmin",
+										"hora-clase",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Crear Hora clase",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUxNjE3ODIzLCJpYXQiOjE3NTE2MTQyMjMsImp0aSI6IjZjYTI5YjExY2Y3ZTQwZjA4MGQzY2MzMzBhMzUwOGRmIiwidXNlcl9pZCI6MX0.05o2OahrWTtIFwNAfmTQmOFNm02EvpLQ1RDmo1g6Xlo",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"dia\": \"Lunes\",\r\n  \"hora_inicio\": \"08:00:00\",\r\n  \"hora_fin\": \"09:00:00\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/api/superadmin/hora-clase/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"superadmin",
+										"hora-clase",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Actualizar Hora Clase",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUxNjE3ODIzLCJpYXQiOjE3NTE2MTQyMjMsImp0aSI6IjZjYTI5YjExY2Y3ZTQwZjA4MGQzY2MzMzBhMzUwOGRmIiwidXNlcl9pZCI6MX0.05o2OahrWTtIFwNAfmTQmOFNm02EvpLQ1RDmo1g6Xlo",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"dia\": \"Lunes\",\r\n  \"hora_inicio\": \"08:00:00\",\r\n  \"hora_fin\": \"09:00:00\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/api/superadmin/hora-clase/1/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"superadmin",
+										"hora-clase",
+										"1",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Eliminar Hora-Clase",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUxNjE3ODIzLCJpYXQiOjE3NTE2MTQyMjMsImp0aSI6IjZjYTI5YjExY2Y3ZTQwZjA4MGQzY2MzMzBhMzUwOGRmIiwidXNlcl9pZCI6MX0.05o2OahrWTtIFwNAfmTQmOFNm02EvpLQ1RDmo1g6Xlo",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/api/superadmin/hora-clase/1/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"superadmin",
+										"hora-clase",
+										"1",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Facultades",
+					"item": [
+						{
+							"name": "Obtener Facultades",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUxNjEwOTIyLCJpYXQiOjE3NTE2MDkxMjIsImp0aSI6ImVmOWM4MTNjMmMxMzRkNzQ4OGU0MzQyNTUyYmRhZjA1IiwidXNlcl9pZCI6MX0.Nc81SHNNyTvegUInFUU3UFKXenUhj__ynlEK7gT12aQ",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/api/superadmin/facultades/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"superadmin",
+										"facultades",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Crear Facultades",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUxNjA4OTg3LCJpYXQiOjE3NTE2MDg2ODcsImp0aSI6IjZmMzE3YTBjMTg5NTRlMGQ5MWU0NmVkMTlhOGIzMzcwIiwidXNlcl9pZCI6MX0.tr3aetzCk9N8Uao1BS97APBYWx2Uq6_Bsfcrt4bFcS4",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "\r\n{ \"nombre\": \"Facultad de ingeniería y ciencas aplicadas\" }\r\n\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/api/superadmin/facultades/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"superadmin",
+										"facultades",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Actualizar Facutades",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUxNjA4OTg3LCJpYXQiOjE3NTE2MDg2ODcsImp0aSI6IjZmMzE3YTBjMTg5NTRlMGQ5MWU0NmVkMTlhOGIzMzcwIiwidXNlcl9pZCI6MX0.tr3aetzCk9N8Uao1BS97APBYWx2Uq6_Bsfcrt4bFcS4",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \r\n  \"nombre\": \"Facultad de Ingeniería y Tecnología\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/api/superadmin/facultades/1/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"superadmin",
+										"facultades",
+										"1",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Borrar Facultades",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUxNjA2MTA2LCJpYXQiOjE3NTE2MDU4MDYsImp0aSI6IjZkYzVlZWI1NjhlMzQ2ZmZhNzBmNTcxMmZkZDBmMDg1IiwidXNlcl9pZCI6MX0.BavFmTmcuR3icNAmdD9Q_OLCgWYX4bjn9czeQGq3L3k",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/api/superadmin/facultades/{id}/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"superadmin",
+										"facultades",
+										"{id}",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Carreras",
+					"item": [
+						{
+							"name": "Obtener Carreras",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUxNjE0MTk1LCJpYXQiOjE3NTE2MTIzOTUsImp0aSI6IjBkZjFmOTQ0MzMzMzQ0MTc4NzVhYjM4Y2FkYTEwNDY1IiwidXNlcl9pZCI6MX0.5fw3Om0Vdg3yzxQryA5Ba8-3VXy172xE7Km7erO4I18",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/api/superadmin/carreras/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"superadmin",
+										"carreras",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Crear Carreras",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUxNjEwOTIyLCJpYXQiOjE3NTE2MDkxMjIsImp0aSI6ImVmOWM4MTNjMmMxMzRkNzQ4OGU0MzQyNTUyYmRhZjA1IiwidXNlcl9pZCI6MX0.Nc81SHNNyTvegUInFUU3UFKXenUhj__ynlEK7gT12aQ",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nombre\": \"Ingnieria Mecanica\",\r\n    \"codigo\": \"IM\",\r\n    \"id_facultad\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/api/superadmin/carreras/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"superadmin",
+										"carreras",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Actualizar Carrera",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUzMTY5MDcxLCJpYXQiOjE3NTMxNTEwNzEsImp0aSI6IjQ1ZmYzNDU4ODlhNDQ2YTY4Mzg4NjFjMWRhYjEwNWQ2IiwidXNlcl9pZCI6NX0.-1PKlmuAIIWuTQwFltlHldsyriVhwcv3PPSQG-shlQs",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nombre\": \"Ingnsssieria Mecanica\",\r\n    \"codigo\": \"IM\",\r\n    \"id_facultad\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/api/superadmin/carreras/5/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"superadmin",
+										"carreras",
+										"5",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Eliminar Carrera",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUxNjEwOTIyLCJpYXQiOjE3NTE2MDkxMjIsImp0aSI6ImVmOWM4MTNjMmMxMzRkNzQ4OGU0MzQyNTUyYmRhZjA1IiwidXNlcl9pZCI6MX0.Nc81SHNNyTvegUInFUU3UFKXenUhj__ynlEK7gT12aQ",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/api/superadmin/carreras/{id}/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"superadmin",
+										"carreras",
+										"{id}",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Aulas",
+					"item": [
+						{
+							"name": "Obtener Aulas",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUxNzcwMzEwLCJpYXQiOjE3NTE3NTIzMTAsImp0aSI6ImQ3MWEzZjU3NzQyYjQ3NzQ5ZGI4ZmFmNDQ3MjdmYzAzIiwidXNlcl9pZCI6MX0.0KO0PmXx4XMH1J0_SFvHnl1wEncgXHxcul8osow7cpo",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/api/superadmin/aulas/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"superadmin",
+										"aulas",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Crear Aulas",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUxNzY1MTEzLCJpYXQiOjE3NTE3NDcxMTMsImp0aSI6ImRmODg2MzcxMWM3MTQzZGZhNjI4N2ExY2ZiN2FkYTYwIiwidXNlcl9pZCI6MX0.n3HHudFLFC-F9KvNmRYVTpg2Z8xqA8TFlwj4OfS76Mw",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"nombre\": \"Aula 102\",\r\n  \"capacidad\": 20,\r\n  \"tipo\": \"Teórica\",\r\n  \"edificio\": \"Bloque B\",\r\n  \"piso\": 3,\r\n  \"id_facultad\": 1,\r\n  \"uso_general\": false\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/api/superadmin/aulas/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"superadmin",
+										"aulas",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Actualizar Aulas",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUxNjE3ODIzLCJpYXQiOjE3NTE2MTQyMjMsImp0aSI6IjZjYTI5YjExY2Y3ZTQwZjA4MGQzY2MzMzBhMzUwOGRmIiwidXNlcl9pZCI6MX0.05o2OahrWTtIFwNAfmTQmOFNm02EvpLQ1RDmo1g6Xlo",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"nombre\": \"Aula 101\",\r\n  \"capacidad\": 40,\r\n  \"tipo\": \"Teórica\",\r\n  \"edificio\": \"Bloque A\",\r\n  \"piso\": 1,\r\n  \"id_facultad\": 1,\r\n  \"uso_general\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/api/superadmin/aulas/1/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"superadmin",
+										"aulas",
+										"1",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Eliminar Aulas",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUxNjE3ODIzLCJpYXQiOjE3NTE2MTQyMjMsImp0aSI6IjZjYTI5YjExY2Y3ZTQwZjA4MGQzY2MzMzBhMzUwOGRmIiwidXNlcl9pZCI6MX0.05o2OahrWTtIFwNAfmTQmOFNm02EvpLQ1RDmo1g6Xlo",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"nombre\": \"Aula 101\",\r\n  \"capacidad\": 40,\r\n  \"tipo\": \"Teórica\",\r\n  \"edificio\": \"Bloque A\",\r\n  \"piso\": 1,\r\n  \"id_facultad\": 1,\r\n  \"uso_general\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/api/superadmin/aulas/1/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"superadmin",
+										"aulas",
+										"1",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Asiganaturas",
+					"item": [
+						{
+							"name": "Obtener Asignaturas",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUyODkzMzg0LCJpYXQiOjE3NTI4NzUzODQsImp0aSI6Ijg3MTc4MGQwZTY1ZjQ1MTRhNDIyNGE3ZGRlYTAyYjAwIiwidXNlcl9pZCI6NX0.mcSt3OLSizJIM_6ry11t_hGp8WHQkSRZIyoahxJgUX8",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/api/superadmin/asignaturas/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"superadmin",
+										"asignaturas",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Crear Asignaturas",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUxOTQxNjI2LCJpYXQiOjE3NTE5MjM2MjYsImp0aSI6ImM1YmVmMjQ0OWFjNTQyMjFiZDAyNDlmZTM3N2E0NjlmIiwidXNlcl9pZCI6MX0._CjOLWX4S62DV77D2QHbnQ9bhjGyuAorha8LrEz9d54",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"nombre\": \"POO 2\",\r\n  \"codigo\": \"TCd222BFT01\",\r\n  \"horas_clase\": 4,\r\n  \"horas_pae\": 2,\r\n  \"semestre\": 1,\r\n  \"es_comun\": false\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/api/superadmin/asignaturas/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"superadmin",
+										"asignaturas",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Actualizar Asignaturas",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUxNjEwOTIyLCJpYXQiOjE3NTE2MDkxMjIsImp0aSI6ImVmOWM4MTNjMmMxMzRkNzQ4OGU0MzQyNTUyYmRhZjA1IiwidXNlcl9pZCI6MX0.Nc81SHNNyTvegUInFUU3UFKXenUhj__ynlEK7gT12aQ",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id_asignatura\": 1,\r\n  \"nombre\": \"Matemáticas I - Modificada\",\r\n  \"codigo\": \"MAT101\",\r\n  \"horas_clase\": 5,\r\n  \"horas_pae\": 1,\r\n  \"semestre\": 1,\r\n  \"es_comun\": false\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/api/asignaturas/{id}/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"asignaturas",
+										"{id}",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Eliminar Asignaturas",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUxNjEwOTIyLCJpYXQiOjE3NTE2MDkxMjIsImp0aSI6ImVmOWM4MTNjMmMxMzRkNzQ4OGU0MzQyNTUyYmRhZjA1IiwidXNlcl9pZCI6MX0.Nc81SHNNyTvegUInFUU3UFKXenUhj__ynlEK7gT12aQ",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "[\r\n  {\r\n    \"nombre\": \"Estructuras de Datos\",\r\n    \"codigo\": \"ED123\",\r\n    \"horas_clase\": 4,\r\n    \"horas_pae\": 2,\r\n    \"id_carrera\": 1,\r\n    \"semestre\": 3,\r\n    \"numero_paralelos\": 3\r\n  },\r\n  {\r\n    \"nombre\": \"Bases de Datos\",\r\n    \"codigo\": \"BD123\",\r\n    \"horas_clase\": 2,\r\n    \"horas_pae\": 2,\r\n    \"id_carrera\": 1,\r\n    \"semestre\": 3,\r\n    \"numero_paralelos\": 2\r\n  },\r\n  {\r\n    \"nombre\": \"Arquitectura de Computadoras\",\r\n    \"codigo\": \"AC123\",\r\n    \"horas_clase\": 7,\r\n    \"horas_pae\": 1,\r\n    \"id_carrera\": 1,\r\n    \"semestre\": 3,\r\n    \"numero_paralelos\": 2\r\n  },\r\n  {\r\n    \"nombre\": \"Matemáticas Discretas\",\r\n    \"codigo\": \"MD123\",\r\n    \"horas_clase\": 8,\r\n    \"horas_pae\": 1,\r\n    \"id_carrera\": 1,\r\n    \"semestre\": 3,\r\n    \"numero_paralelos\": 2\r\n  }\r\n]\r\n\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/api/asignaturas/{id}/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"asignaturas",
+										"{id}",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Semestre Lectivo",
+					"item": [
+						{
+							"name": "Traer Años Lectivos",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUyNzQ1MDQzLCJpYXQiOjE3NTI3MjcwNDMsImp0aSI6ImMwZGU4ODY4ZjAwMjQ4ZmNhMmQ5NzU3ZjFmYTRiOWYyIiwidXNlcl9pZCI6NX0.D14DTAEMfJtuoS-R4tAZd6r3Ws-DQtyLqOWm4ovl-4k",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/api/superadmin/semestre-lectivo/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"superadmin",
+										"semestre-lectivo",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Agregar nuevo Año Lectivo",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUyNzQ1MDQzLCJpYXQiOjE3NTI3MjcwNDMsImp0aSI6ImMwZGU4ODY4ZjAwMjQ4ZmNhMmQ5NzU3ZjFmYTRiOWYyIiwidXNlcl9pZCI6NX0.D14DTAEMfJtuoS-R4tAZd6r3Ws-DQtyLqOWm4ovl-4k",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"anio_inicio\": 2025,\r\n  \"anio_fin\": 2026,\r\n  \"periodo\": \"B\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/api/superadmin/semestre-lectivo/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"superadmin",
+										"semestre-lectivo",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Actualizar Año Lectivo",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUyNzQ1MDQzLCJpYXQiOjE3NTI3MjcwNDMsImp0aSI6ImMwZGU4ODY4ZjAwMjQ4ZmNhMmQ5NzU3ZjFmYTRiOWYyIiwidXNlcl9pZCI6NX0.D14DTAEMfJtuoS-R4tAZd6r3Ws-DQtyLqOWm4ovl-4k",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"anio_inicio\": 2025,\r\n  \"anio_fin\": 2025,\r\n  \"periodo\": \"A\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/api/superadmin/semestre-lectivo/1/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"superadmin",
+										"semestre-lectivo",
+										"1",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Eliminar Año Lectivo",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUyNzQ1MDQzLCJpYXQiOjE3NTI3MjcwNDMsImp0aSI6ImMwZGU4ODY4ZjAwMjQ4ZmNhMmQ5NzU3ZjFmYTRiOWYyIiwidXNlcl9pZCI6NX0.D14DTAEMfJtuoS-R4tAZd6r3Ws-DQtyLqOWm4ovl-4k",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/api/superadmin/semestre-lectivo/1/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"superadmin",
+										"semestre-lectivo",
+										"1",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Funciones y GET'S",
+			"item": [
+				{
+					"name": "Asignatura - Carrera",
+					"item": [
+						{
+							"name": "Obtener Asignaturas - Carrera",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUxOTQxNjI2LCJpYXQiOjE3NTE5MjM2MjYsImp0aSI6ImM1YmVmMjQ0OWFjNTQyMjFiZDAyNDlmZTM3N2E0NjlmIiwidXNlcl9pZCI6MX0._CjOLWX4S62DV77D2QHbnQ9bhjGyuAorha8LrEz9d54",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/api/superadmin/asignatura-carrera/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"superadmin",
+										"asignatura-carrera",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Crear Asignatura - Carrera",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUxNzcwMzEwLCJpYXQiOjE3NTE3NTIzMTAsImp0aSI6ImQ3MWEzZjU3NzQyYjQ3NzQ5ZGI4ZmFmNDQ3MjdmYzAzIiwidXNlcl9pZCI6MX0.0KO0PmXx4XMH1J0_SFvHnl1wEncgXHxcul8osow7cpo",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id_asignatura\": 1,\r\n  \"id_carrera\": [1,5]\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/api/superadmin/asignatura-carrera/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"superadmin",
+										"asignatura-carrera",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Actualizar Asignatura - Carrera",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUxNzcwMzEwLCJpYXQiOjE3NTE3NTIzMTAsImp0aSI6ImQ3MWEzZjU3NzQyYjQ3NzQ5ZGI4ZmFmNDQ3MjdmYzAzIiwidXNlcl9pZCI6MX0.0KO0PmXx4XMH1J0_SFvHnl1wEncgXHxcul8osow7cpo",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id_asignatura\": 1,\r\n  \"id_carrera\": 4\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/api/superadmin/asignatura-carrera/17/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"superadmin",
+										"asignatura-carrera",
+										"17",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Eliminar Asignatura - Carrera",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUxNjE0MTk1LCJpYXQiOjE3NTE2MTIzOTUsImp0aSI6IjBkZjFmOTQ0MzMzMzQ0MTc4NzVhYjM4Y2FkYTEwNDY1IiwidXNlcl9pZCI6MX0.5fw3Om0Vdg3yzxQryA5Ba8-3VXy172xE7Km7erO4I18",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/api/superadmin/asignatura-carrera/5/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"superadmin",
+										"asignatura-carrera",
+										"5",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Lista todas las asignaturas asociadas a una carrera específica.",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUxNzcwMzEwLCJpYXQiOjE3NTE3NTIzMTAsImp0aSI6ImQ3MWEzZjU3NzQyYjQ3NzQ5ZGI4ZmFmNDQ3MjdmYzAzIiwidXNlcl9pZCI6MX0.0KO0PmXx4XMH1J0_SFvHnl1wEncgXHxcul8osow7cpo",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/api/superadmin/asignatura-carrera/carrera/5/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"superadmin",
+										"asignatura-carrera",
+										"carrera",
+										"5",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Lista todas las carreras asociadas a una asignatura específica.",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUxNzcwMzEwLCJpYXQiOjE3NTE3NTIzMTAsImp0aSI6ImQ3MWEzZjU3NzQyYjQ3NzQ5ZGI4ZmFmNDQ3MjdmYzAzIiwidXNlcl9pZCI6MX0.0KO0PmXx4XMH1J0_SFvHnl1wEncgXHxcul8osow7cpo",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/api/superadmin/asignatura-carrera/asignatura/1/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"superadmin",
+										"asignatura-carrera",
+										"asignatura",
+										"1",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Usuario - Carrera",
+					"item": [
+						{
+							"name": "Obtener Usuario - Carrera",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUyNDYyNjI0LCJpYXQiOjE3NTI0NDQ2MjQsImp0aSI6ImVkNzAzNWQ5Nzg5OTQzNmI5NDFiZjI5YTA1OTUwMzgxIiwidXNlcl9pZCI6NX0.3Q-SYS18xYrpdiq3uDhv0av4SzLQkvs46ou3LW8Ur90",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/api/superadmin/usuario-carrera/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"superadmin",
+										"usuario-carrera",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Crear Usuario - Carrera",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUyMjk1OTMzLCJpYXQiOjE3NTIyNzc5MzMsImp0aSI6ImM3ODE0YzE2NDc2ZDQ3ZjNhOWM1ZTM0YWQyYmFjNzMxIiwidXNlcl9pZCI6MX0.zmjGNwNFQuP41U1-C9FgMbMtuS9NIDyTS3n9VOVeKN0",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id_usuario\": 5,\r\n  \"id_carrera\": 4\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/api/superadmin/usuario-carrera/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"superadmin",
+										"usuario-carrera",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Actualizar Usuario - Carrera",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUxNjUyMTY4LCJpYXQiOjE3NTE2NDg1NjgsImp0aSI6IjQ2ZGYwOGY1NmZmOTQ0NjliNjU4ZTcxZTcwNGI2MDcwIiwidXNlcl9pZCI6MX0.ddhSQE0WMye49y9B4cFo4aEBEWo9pVG4FFsGRNV2rYc",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id_usuario\": 3,\r\n  \"id_carrera\": 3\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/api/superadmin/usuario-carrera/3/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"superadmin",
+										"usuario-carrera",
+										"3",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Eliminar Usuario - Carrera",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUxNjE0MTk1LCJpYXQiOjE3NTE2MTIzOTUsImp0aSI6IjBkZjFmOTQ0MzMzMzQ0MTc4NzVhYjM4Y2FkYTEwNDY1IiwidXNlcl9pZCI6MX0.5fw3Om0Vdg3yzxQryA5Ba8-3VXy172xE7Km7erO4I18",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/api/superadmin/usuario-carrera/1/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"superadmin",
+										"usuario-carrera",
+										"1",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Obtener carreras por usuario",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUxOTM4NDkzLCJpYXQiOjE3NTE5MjA0OTMsImp0aSI6IjIyNTY3ZDhhN2Q1NzQzMGZhN2EzYjNhN2EwOWRmYmE4IiwidXNlcl9pZCI6MX0.9ipTGkyLhZGx-e5CGyANvuGKPwLyV7Z4vE9PngD2COA",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/api/superadmin/usuario-carrera/usuario/3/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"superadmin",
+										"usuario-carrera",
+										"usuario",
+										"3",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Obtener usuarios por carrera",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUxOTM4NDkzLCJpYXQiOjE3NTE5MjA0OTMsImp0aSI6IjIyNTY3ZDhhN2Q1NzQzMGZhN2EzYjNhN2EwOWRmYmE4IiwidXNlcl9pZCI6MX0.9ipTGkyLhZGx-e5CGyANvuGKPwLyV7Z4vE9PngD2COA",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/api/superadmin/usuario-carrera/carrera/3/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"superadmin",
+										"usuario-carrera",
+										"carrera",
+										"3",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Usuario - Asignatura",
+					"item": [
+						{
+							"name": "Obtener Usuario - Asignatura",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUxOTQxNjI2LCJpYXQiOjE3NTE5MjM2MjYsImp0aSI6ImM1YmVmMjQ0OWFjNTQyMjFiZDAyNDlmZTM3N2E0NjlmIiwidXNlcl9pZCI6MX0._CjOLWX4S62DV77D2QHbnQ9bhjGyuAorha8LrEz9d54",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/api/superadmin/usuario-asignatura/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"superadmin",
+										"usuario-asignatura",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Crear Usuario - Asignatura",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUxOTQxNjI2LCJpYXQiOjE3NTE5MjM2MjYsImp0aSI6ImM1YmVmMjQ0OWFjNTQyMjFiZDAyNDlmZTM3N2E0NjlmIiwidXNlcl9pZCI6MX0._CjOLWX4S62DV77D2QHbnQ9bhjGyuAorha8LrEz9d54",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id_usuario\": 3,\r\n  \"id_asignatura\": 5,\r\n  \"paralelo\": 3\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/api/superadmin/usuario-asignatura/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"superadmin",
+										"usuario-asignatura",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Actualizar Usuario - Asignatura",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUxNjUyMTY4LCJpYXQiOjE3NTE2NDg1NjgsImp0aSI6IjQ2ZGYwOGY1NmZmOTQ0NjliNjU4ZTcxZTcwNGI2MDcwIiwidXNlcl9pZCI6MX0.ddhSQE0WMye49y9B4cFo4aEBEWo9pVG4FFsGRNV2rYc",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id_usuario\": 5,\r\n  \"id_carrera\": 2\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/api/superadmin/usuario-asignatura/1/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"superadmin",
+										"usuario-asignatura",
+										"1",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Eliminar Usuario - Asignatura",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUxOTQxNjI2LCJpYXQiOjE3NTE5MjM2MjYsImp0aSI6ImM1YmVmMjQ0OWFjNTQyMjFiZDAyNDlmZTM3N2E0NjlmIiwidXNlcl9pZCI6MX0._CjOLWX4S62DV77D2QHbnQ9bhjGyuAorha8LrEz9d54",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/api/superadmin/usuario-asignatura/3/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"superadmin",
+										"usuario-asignatura",
+										"3",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Ver materias de un docente",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUxNjYwMTY0LCJpYXQiOjE3NTE2NTI5NjQsImp0aSI6Ijk2YTI2ODM2OGMyMjQ4ZTZiYmVmYzAxZGFlZWM0MThiIiwidXNlcl9pZCI6MX0.57LXqzxMo8F0vKgygHZBLHzl-HMR2dNKsI7kcgREB5A",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/api/superadmin/usuario-asignatura/usuario/3/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"superadmin",
+										"usuario-asignatura",
+										"usuario",
+										"3",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Ver docentes que dictan cierta asignatura",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUxNjYwMTY0LCJpYXQiOjE3NTE2NTI5NjQsImp0aSI6Ijk2YTI2ODM2OGMyMjQ4ZTZiYmVmYzAxZGFlZWM0MThiIiwidXNlcl9pZCI6MX0.57LXqzxMo8F0vKgygHZBLHzl-HMR2dNKsI7kcgREB5A",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/api/superadmin/usuario-asignatura/asignatura/3/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"superadmin",
+										"usuario-asignatura",
+										"asignatura",
+										"3",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Usuario - Asignatura - Estudiante",
+					"item": [
+						{
+							"name": "Obtener Usuario - Asignatura - Estudiante",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUxNzY1MTEzLCJpYXQiOjE3NTE3NDcxMTMsImp0aSI6ImRmODg2MzcxMWM3MTQzZGZhNjI4N2ExY2ZiN2FkYTYwIiwidXNlcl9pZCI6MX0.n3HHudFLFC-F9KvNmRYVTpg2Z8xqA8TFlwj4OfS76Mw",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/api/superadmin/usu-asig-estudiante/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"superadmin",
+										"usu-asig-estudiante",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Crear Usuario - Asignatura - Estudiante",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUxNjYwMTY0LCJpYXQiOjE3NTE2NTI5NjQsImp0aSI6Ijk2YTI2ODM2OGMyMjQ4ZTZiYmVmYzAxZGFlZWM0MThiIiwidXNlcl9pZCI6MX0.57LXqzxMo8F0vKgygHZBLHzl-HMR2dNKsI7kcgREB5A",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id_usuario\": 4,\r\n  \"id_asignatura\": 1,\r\n  \"paralelo\": 1\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/api/superadmin/usu-asig-estudiante/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"superadmin",
+										"usu-asig-estudiante",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Actualizar Usuario - Asignatura - Estudiante",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUxNjYwMTY0LCJpYXQiOjE3NTE2NTI5NjQsImp0aSI6Ijk2YTI2ODM2OGMyMjQ4ZTZiYmVmYzAxZGFlZWM0MThiIiwidXNlcl9pZCI6MX0.57LXqzxMo8F0vKgygHZBLHzl-HMR2dNKsI7kcgREB5A",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id_usuario\": 4,\r\n  \"id_asignatura\": 1,\r\n  \"paralelo\": 2\r\n}\r\n\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/api/superadmin/usu-asig-estudiante/1/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"superadmin",
+										"usu-asig-estudiante",
+										"1",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Eliminar Usuario - Asignatura - Estudiante",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUxNjE0MTk1LCJpYXQiOjE3NTE2MTIzOTUsImp0aSI6IjBkZjFmOTQ0MzMzMzQ0MTc4NzVhYjM4Y2FkYTEwNDY1IiwidXNlcl9pZCI6MX0.5fw3Om0Vdg3yzxQryA5Ba8-3VXy172xE7Km7erO4I18",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/api/superadmin/usu-asig-estudiante/1/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"superadmin",
+										"usu-asig-estudiante",
+										"1",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Lista todas las asignaturas donde está inscrito ese estudiante.",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUxNjYwMTY0LCJpYXQiOjE3NTE2NTI5NjQsImp0aSI6Ijk2YTI2ODM2OGMyMjQ4ZTZiYmVmYzAxZGFlZWM0MThiIiwidXNlcl9pZCI6MX0.57LXqzxMo8F0vKgygHZBLHzl-HMR2dNKsI7kcgREB5A",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/api/superadmin/usu-asig-estudiante/?usuario=4",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"superadmin",
+										"usu-asig-estudiante",
+										""
+									],
+									"query": [
+										{
+											"key": "usuario",
+											"value": "4"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Lista todos los estudiantes inscritos en esa asignatura.",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUxNjYwMTY0LCJpYXQiOjE3NTE2NTI5NjQsImp0aSI6Ijk2YTI2ODM2OGMyMjQ4ZTZiYmVmYzAxZGFlZWM0MThiIiwidXNlcl9pZCI6MX0.57LXqzxMo8F0vKgygHZBLHzl-HMR2dNKsI7kcgREB5A",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/api/superadmin/usu-asig-estudiante/?asignatura=1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"superadmin",
+										"usu-asig-estudiante",
+										""
+									],
+									"query": [
+										{
+											"key": "asignatura",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Lista exacta de inscripción por usuario y asignatura",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUxNjYwMTY0LCJpYXQiOjE3NTE2NTI5NjQsImp0aSI6Ijk2YTI2ODM2OGMyMjQ4ZTZiYmVmYzAxZGFlZWM0MThiIiwidXNlcl9pZCI6MX0.57LXqzxMo8F0vKgygHZBLHzl-HMR2dNKsI7kcgREB5A",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/api/superadmin/usu-asig-estudiante/?usuario=3&asignatura=2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"superadmin",
+										"usu-asig-estudiante",
+										""
+									],
+									"query": [
+										{
+											"key": "usuario",
+											"value": "3"
+										},
+										{
+											"key": "asignatura",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Lógica Compleja Horarios",
+			"item": [
+				{
+					"name": "Horario",
+					"item": [
+						{
+							"name": "Get Horarios Solo admins ven todo",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUzMTY3MTgyLCJpYXQiOjE3NTMxNDkxODIsImp0aSI6ImYxZWI4YTI3NjljNjRiNWJhM2JmMGQ3M2RlNGU3Zjc5IiwidXNlcl9pZCI6NX0.d2cg9xVt7dBqZUORaGvRzCrlOErDXB3P3VwreviE7rc",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/api/superadmin/horario/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"superadmin",
+										"horario",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Crear Horario",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUxNjg0NTgyLCJpYXQiOjE3NTE2NjY1ODIsImp0aSI6ImE0YzdhMjE4MjBiOTQ4YjhhZjE2MjI4ZWExMTg0MGJmIiwidXNlcl9pZCI6MX0.FyGgW-F9Yiia-5UJ5K9pnTPQWNRFHNVY3--TE6sE2ns",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id_asignatura\": 3,\r\n  \"id_aula\": 4,\r\n  \"id_hora_clase\": 5,\r\n  \"id_usuario\": 2,\r\n  \"paralelo\": 1,\r\n  \"id_semestre_lectivo\": 1\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/api/superadmin/horario/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"superadmin",
+										"horario",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Editar Horario",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUxNjg0NTgyLCJpYXQiOjE3NTE2NjY1ODIsImp0aSI6ImE0YzdhMjE4MjBiOTQ4YjhhZjE2MjI4ZWExMTg0MGJmIiwidXNlcl9pZCI6MX0.FyGgW-F9Yiia-5UJ5K9pnTPQWNRFHNVY3--TE6sE2ns",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id_asignatura\": 3,\r\n  \"id_aula\": 4,\r\n  \"id_hora_clase\": 5,\r\n  \"id_usuario\": 2,\r\n  \"paralelo\": 1,\r\n  \"id_semestre_lectivo\": 1\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/api/superadmin/horario/{id}/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"superadmin",
+										"horario",
+										"{id}",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "New Request",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUxNjg0NTgyLCJpYXQiOjE3NTE2NjY1ODIsImp0aSI6ImE0YzdhMjE4MjBiOTQ4YjhhZjE2MjI4ZWExMTg0MGJmIiwidXNlcl9pZCI6MX0.FyGgW-F9Yiia-5UJ5K9pnTPQWNRFHNVY3--TE6sE2ns",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/api/superadmin/horario/{id}/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"superadmin",
+										"horario",
+										"{id}",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Lista horarios de un estudiante específico",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/api/superadmin/horario/estudiante/3/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"superadmin",
+										"horario",
+										"estudiante",
+										"3",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Lista horarios de un docente específico",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUxOTQxNjI2LCJpYXQiOjE3NTE5MjM2MjYsImp0aSI6ImM1YmVmMjQ0OWFjNTQyMjFiZDAyNDlmZTM3N2E0NjlmIiwidXNlcl9pZCI6MX0._CjOLWX4S62DV77D2QHbnQ9bhjGyuAorha8LrEz9d54",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/api/superadmin/horario/docente/3/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"superadmin",
+										"horario",
+										"docente",
+										"3",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Logs",
+			"item": [
+				{
+					"name": "Obtener Logs",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUzMzQxNzcyLCJpYXQiOjE3NTMzMjM3NzIsImp0aSI6Ijg3OTg5MjI3ZmNiMjQ3ZWM5YzFjMGNiOWI3YzljM2E4IiwidXNlcl9pZCI6MX0.RJAzvCbAJ80KDrQVicc7vQD6MONytdK9EFjV8vcIVgs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/superadmin/logs/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"superadmin",
+								"logs",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
